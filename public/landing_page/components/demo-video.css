@@ -1,0 +1,348 @@
+/* Demo Video Section Styles */
+
+/* Animated Gradient Background */
+.demo-video-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-video-container {
+  position: relative;
+  background: linear-gradient(135deg, #00288e 0%, #0045c7 50%, #0066ff 100%);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 40, 142, 0.4);
+}
+
+/* Animated Background Shapes */
+.demo-video-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Floating Orbs Animation */
+.demo-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  animation: float 8s ease-in-out infinite;
+}
+
+.demo-orb-1 {
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.3);
+  top: -50px;
+  right: -50px;
+  animation-delay: 0s;
+}
+
+.demo-orb-2 {
+  width: 150px;
+  height: 150px;
+  background: rgba(0, 200, 255, 0.3);
+  bottom: -30px;
+  left: -30px;
+  animation-delay: -2s;
+}
+
+.demo-orb-3 {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 200, 100, 0.3);
+  top: 50%;
+  left: 50%;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-30px) scale(1.1);
+  }
+}
+
+/* Title Animation */
+.demo-title {
+  position: relative;
+  display: inline-block;
+}
+
+.demo-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  border-radius: 2px;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    width: 60px;
+  }
+
+  50% {
+    opacity: 1;
+    width: 100px;
+  }
+}
+
+/* Video Container */
+.video-wrapper {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.video-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.video-placeholder {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Animated Play Button */
+.play-button {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.play-button:active {
+  transform: scale(0.95);
+}
+
+/* Pulse Animation Ring */
+.play-button::before,
+.play-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: pulse 2s ease-out infinite;
+}
+
+.play-button::after {
+  animation-delay: 1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.play-icon {
+  font-size: 3rem;
+  color: #00288e;
+  margin-left: 5px;
+}
+
+/* Decorative Elements */
+.video-decoration {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: decorationFloat 6s ease-in-out infinite;
+}
+
+.video-decoration-1 {
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.video-decoration-2 {
+  width: 15px;
+  height: 15px;
+  bottom: 30px;
+  right: 30px;
+  animation-delay: -2s;
+}
+
+.video-decoration-3 {
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  right: 15px;
+  animation-delay: -4s;
+}
+
+@keyframes decorationFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* Button Styles */
+.demo-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.demo-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.demo-btn:hover::before {
+  left: 100%;
+}
+
+.demo-btn-primary {
+  background: white;
+  color: #00288e;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+
+.demo-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
+}
+
+.demo-btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.demo-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+/* Glow Effect */
+.glow-text {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+
+  50% {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .demo-video-container {
+    padding: 2rem 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .play-button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .play-icon {
+    font-size: 2rem;
+  }
+
+  .demo-orb-1 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .demo-orb-2 {
+    width: 80px;
+    height: 80px;
+  }
+}

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Dudhiya - Smart Dairy Management Solution</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#2d3133",
+            "surface-container-high": "#e6e8ea",
+            "outline": "#757684",
+            "on-primary-fixed-variant": "#173bab",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed": "#001e2f",
+            "surface-container-low": "#f2f4f6",
+            "surface": "#f7f9fb",
+            "surface-variant": "#e0e3e5",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#1e40af",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#6ffbbe",
+            "on-surface-variant": "#444653",
+            "primary-fixed-dim": "#b8c4ff",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#4edea3",
+            "surface-tint": "#3755c3",
+            "background": "#f7f9fb",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#c9e6ff",
+            "on-primary-fixed": "#001453",
+            "on-primary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "inverse-primary": "#b8c4ff",
+            "surface-dim": "#d8dadc",
+            "tertiary-fixed-dim": "#89ceff",
+            "on-background": "#191c1e",
+            "tertiary": "#003853",
+            "on-primary-container": "#a8b8ff",
+            "surface-container": "#eceef0",
+            "on-secondary-fixed": "#002113",
+            "on-surface": "#191c1e",
+            "secondary-container": "#6cf8bb",
+            "primary": "#00288e",
+            "on-tertiary-container": "#68c4ff",
+            "primary-fixed": "#dde1ff",
+            "secondary": "#006c49",
+            "inverse-on-surface": "#eff1f3",
+            "tertiary-container": "#005074",
+            "on-secondary-fixed-variant": "#005236",
+            "outline-variant": "#c4c5d5",
+            "on-tertiary-fixed-variant": "#004c6e",
+            "surface-container-highest": "#e0e3e5",
+            "on-secondary-container": "#00714d",
+            "on-error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(24px);
+    }
+
+    .primary-gradient {
+      background: linear-gradient(135deg, #00288e 0%, #1e40af 100%);
+    }
+
+    .pulse-chip::before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #00714d;
+      border-radius: 50%;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface">
+  <!-- TopNavBar -->
+  <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,20,83,0.06)]">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+      <div class="text-2xl font-bold tracking-tight text-blue-900">Dudhiya</div>
+      <div class="hidden md:flex items-center space-gap-8 gap-x-8">
+        <a class="text-blue-700 font-bold border-b-2 border-blue-600 transition-colors duration-300"
+          href="#">Features</a>
+        <a class="text-slate-600 font-medium hover:text-blue-600 transition-colors duration-300" href="#">Benefits</a>
+        <a class="text-slate-600 font-medium hover:text-blue-600 transition-colors duration-300" href="#">Download</a>
+        <a class="text-slate-600 font-medium hover:text-blue-600 transition-colors duration-300" href="#">Contact</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-slate-600 cursor-pointer hover:text-blue-600">language</span>
+        <button
+          class="primary-gradient text-on-primary px-6 py-2 rounded-full font-semibold transition-all active:scale-95">Login</button>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="pt-40 pb-32 px-8 overflow-hidden">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <div
+          class="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+          </span>
+          Live Yield Tracking Active
+        </div>
+        <h1 class="font-headline text-6xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
+          Smart Dairy <br /><span class="text-primary">Management</span> Solution
+        </h1>
+        <p class="text-lg md:text-xl text-on-surface-variant mb-10 max-w-2xl leading-relaxed">
+          Streamline your milk collection process, automate payments, and gain deep insights into your dairy operations
+          with Dudhiya's intelligent ecosystem.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            class="primary-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:opacity-90 transition-all flex items-center justify-center gap-2">
+            Download App
+            <span class="material-symbols-outlined">download</span>
+          </button>
+          <button
+            class="bg-surface-container-low text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-surface-container-high transition-all flex items-center justify-center gap-2">
+            Explore Features
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative">
+        <div
+          class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl">
+        </div>
+        <div
+          class="relative rounded-xl overflow-hidden shadow-2xl transform lg:rotate-3 hover:rotate-0 transition-transform duration-700">
+          <img class="w-full h-auto"
+            data-alt="High-end smartphone showing a clean white dairy management app dashboard with milk collection charts and user profiles"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_uziWiR4Tm4wOSvi3rxsARYUqduEz3PJUEPb4SKHQUvOSOByjfQz0qL1NkKx_AHKXKcX5g58qAvGEAZN2GiaSulOR2KqtlN7Uh7G5b4DcThaYTO9P4ynHnObKruHHAbEupowwYuEjCiBlajWGapP9QvN5MUEUmtjgnlFAlpbBcxXJq7ty8buaJdu4hIyfnZvDq1wDRI4ynEWXx8QKjYvLuKvmhcajLL6qBdWIN2vYJyQH2D4QKX3LiPPJKK_MdayBjSJXNkYSef8" />
+        </div>
+        <div class="absolute -bottom-6 -left-12 hidden md:block">
+          <div class="glass-card p-6 rounded-lg shadow-xl border border-white/20">
+            <div class="flex items-center gap-4 mb-2">
+              <span
+                class="material-symbols-outlined text-secondary bg-secondary-container p-2 rounded-full">monitoring</span>
+              <div>
+                <p class="text-xs text-on-surface-variant font-medium">Daily Collection</p>
+                <p class="text-lg font-bold">1,248 Liters</p>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+              <div class="bg-secondary w-3/4 h-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Features Grid -->
+  <section class="py-32 bg-surface-container-low px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-20">
+        <h2 class="font-headline text-4xl md:text-5xl font-bold mb-4">Powerful Features for <br />Modern Dairy</h2>
+        <div class="w-24 h-1.5 bg-primary rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-surface-container-lowest p-10 rounded-xl hover:bg-white transition-all duration-300 group">
+          <div
+            class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-primary text-3xl">calculate</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Milk Calculator</h3>
+          <p class="text-on-surface-variant leading-relaxed">Instantly calculate milk value based on FAT, SNF, and
+            volume with precision accuracy.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-surface-container-lowest p-10 rounded-xl hover:bg-white transition-all duration-300 group">
+          <div
+            class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-secondary text-3xl">group</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Customer Management</h3>
+          <p class="text-on-surface-variant leading-relaxed">Efficiently manage farmer profiles, delivery history, and
+            individual pricing configurations.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-surface-container-lowest p-10 rounded-xl hover:bg-white transition-all duration-300 group">
+          <div
+            class="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-tertiary text-3xl">bar_chart</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Reports &amp; Analytics</h3>
+          <p class="text-on-surface-variant leading-relaxed">Visual data representations of daily, weekly, and monthly
+            collection trends and payouts.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-surface-container-lowest p-10 rounded-xl hover:bg-white transition-all duration-300 group">
+          <div
+            class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-primary text-3xl">account_balance_wallet</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Wallet System</h3>
+          <p class="text-on-surface-variant leading-relaxed">Secure digital wallet for farmers to track balances and
+            request immediate payments.</p>
+        </div>
+        <!-- Card 5 -->
+        <div class="bg-surface-container-lowest p-10 rounded-xl hover:bg-white transition-all duration-300 group">
+          <div
+            class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-secondary text-3xl">inventory</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Collection Management</h3>
+          <p class="text-on-surface-variant leading-relaxed">Organize collection centers and routes with real-time data
+            syncing across devices.</p>
+        </div>
+        <!-- Card 6 -->
+        <div class="bg-surface-container-lowest p-10 rounded-xl hover:bg-white transition-all duration-300 group">
+          <div
+            class="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-tertiary text-3xl">translate</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Multi-lingual Support</h3>
+          <p class="text-on-surface-variant leading-relaxed">Accessible to everyone with support for multiple local and
+            international languages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Benefits Section -->
+  <section class="py-32 px-8">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
+      <div class="lg:w-1/2 relative">
+        <div
+          class="absolute -top-10 -left-10 w-40 h-40 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl opacity-50">
+        </div>
+        <img class="relative z-10 rounded-xl shadow-2xl"
+          data-alt="A clean top-down view of a tablet displaying the Dudhiya analytics dashboard resting on a wooden desk next to a glass of milk"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbXXRUNAmZGaXmSEMY-u0y4xjQinVNteRg5DDRpNvn7ogZxjNZCCCMntODGcmJfqtD2Hl2j1k-yOe3hkFYHfLikx5u1QR9HL-wwqbnM2AF6Ce2eK1z_Nomezbp0jelxhzHL8Z6T8p1mh11ysdSuTPG7tQ72CTd4w5dO8KgGsqjKXyd2fyUjJeRhfMd_BrXUuQBrcCCK5GZHUwqncVUDMOz27vHvy4zpvMwgBX7qWaNnMCdOVBpTtv0Q13Pn5IRL_bgjkvjkjgpHdc" />
+        <div class="absolute -bottom-8 -right-8 bg-white p-6 rounded-lg shadow-xl z-20">
+          <div class="flex items-center gap-4">
+            <div class="flex -space-x-3">
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-400"></div>
+            </div>
+            <div>
+              <div class="flex text-yellow-400">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <p class="text-sm font-bold">4.9/5 Rating</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-1/2">
+        <h4 class="text-primary font-bold tracking-widest text-sm uppercase mb-4">Why Choose Dudhiya?</h4>
+        <h2 class="font-headline text-4xl md:text-5xl font-bold mb-8 leading-tight">Efficiency Meets <br />Precision
+          Farming</h2>
+        <div class="space-y-8">
+          <div class="flex gap-6">
+            <div
+              class="flex-shrink-0 w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined">verified</span>
+            </div>
+            <div>
+              <h5 class="text-xl font-bold mb-2">Unmatched Accuracy</h5>
+              <p class="text-on-surface-variant leading-relaxed">Our advanced algorithms ensure 100% precision in
+                FAT/SNF calculations, reducing human error by 95%.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div
+              class="flex-shrink-0 w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined">bolt</span>
+            </div>
+            <div>
+              <h5 class="text-xl font-bold mb-2">Instant Payouts</h5>
+              <p class="text-on-surface-variant leading-relaxed">Connect bank accounts directly for automated
+                settlements, keeping your farmers happy and loyal.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div
+              class="flex-shrink-0 w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined">touch_app</span>
+            </div>
+            <div>
+              <h5 class="text-xl font-bold mb-2">Intuitive Interface</h5>
+              <p class="text-on-surface-variant leading-relaxed">Designed for use in all conditions, even with low
+                connectivity or by users with minimal technical skills.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Download Section -->
+  <section class="py-32 px-8">
+    <div class="max-w-7xl mx-auto">
+      <div
+        class="primary-gradient rounded-xl p-12 md:p-24 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
+          <span class="material-symbols-outlined text-[30rem] absolute -top-40 -right-40">cloud_download</span>
+        </div>
+        <div class="relative z-10 text-center md:text-left">
+          <h2 class="font-headline text-4xl md:text-6xl font-bold text-white mb-6">Ready to upgrade your dairy?</h2>
+          <p class="text-primary-fixed text-xl max-w-xl mb-10 opacity-90">Join over 10,000 dairy owners who have
+            transformed their operations with Dudhiya.</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-4">
+            <button
+              class="bg-black text-white px-8 py-4 rounded-xl flex items-center gap-4 hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-4xl">play_store_installed</span>
+              <div class="text-left">
+                <p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Get it on</p>
+                <p class="text-lg font-bold">Google Play</p>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div class="relative z-10 lg:pr-12">
+          <div class="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20">
+            <p class="text-white text-lg mb-4 italic font-medium">"This app changed my business overnight. I save 3
+              hours every day on paperwork."</p>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-white/20"></div>
+              <div>
+                <p class="text-white font-bold">Rajesh Kumar</p>
+                <p class="text-primary-fixed text-sm opacity-80">Dairy Owner, Pune</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials -->
+  <section class="py-32 bg-surface px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20">
+        <h2 class="font-headline text-4xl font-bold mb-4">Trusted by Dairy Communities</h2>
+        <p class="text-on-surface-variant max-w-2xl mx-auto">See how Dudhiya is making a real difference in the lives of
+          collection center owners and farmers.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-surface-container p-10 rounded-lg">
+          <div class="flex text-primary mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="text-on-surface-variant mb-8 leading-relaxed">"The multi-lingual support is a lifesaver. Our farmers
+            feel much more confident seeing their data in their own language."</p>
+          <div class="flex items-center gap-4">
+            <img class="w-12 h-12 rounded-full object-cover"
+              data-alt="Portrait of a smiling middle-aged man in a professional setting"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfpAzs-u6S4u5858k-cKVBs7-zQwLCEnaWH0lBq4FjMaSS2CX8QLpNMdixYy3JcfGuY-LijROuBMKpxwmeCl2MCX7VFNKzO0scedG8210bX822mTwHq9mCdsBOf2TP8Y0ERndcXtQJZFacQhpyWP8LEdgVfakMxQJMgpto5mCJI8rWIvVN91tuqtIwS3fXObmY0J4DGmxBDwFFn75VAN82YiiAtMcbRGEtVMP7YFjggnAN4TubB761GGttb2FmbK1BDWd576XZBPs" />
+            <div>
+              <p class="font-bold">Anand Deshmukh</p>
+              <p class="text-xs text-on-surface-variant">Regional Collection Head</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-surface-container p-10 rounded-lg">
+          <div class="flex text-primary mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="text-on-surface-variant mb-8 leading-relaxed">"Managing 500+ customers was a nightmare before
+            Dudhiya. Now everything is automated and transparent."</p>
+          <div class="flex items-center gap-4">
+            <img class="w-12 h-12 rounded-full object-cover"
+              data-alt="Portrait of a young professional woman smiling warmly"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfoZ7QW1kap71DEjhIfOyKwru7Rk3_c9V1866Bc_HdRuID4gsZ8xvqgkxbQ4p6Rl_R042daiItaX3KeeYL3QFhuxhsLfTJMJT_fE3qgub0_odibxQ3h6GCq4q0W8tOy3KDTAotmejmdX67_NpnRnSpmUTxZRubFbKeavBYvEUpdt6Qu6Odd3WOksqEbPHMMPJ4t2Fs2Yf9xnzY4RwOEusXDvnwZDIlKvVwh2EIwNlAW5SRztFDeiTAOk5bTkNKTdFqrPRQjlAX7FQ" />
+            <div>
+              <p class="font-bold">Meera Patel</p>
+              <p class="text-xs text-on-surface-variant">Dairy Entrepreneur</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-surface-container p-10 rounded-lg">
+          <div class="flex text-primary mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="text-on-surface-variant mb-8 leading-relaxed">"The wallet system is incredible. Farmers can track
+            their earnings live, which has built a lot of trust in our center."</p>
+          <div class="flex items-center gap-4">
+            <img class="w-12 h-12 rounded-full object-cover"
+              data-alt="Portrait of an elderly man with a friendly expression"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaEd3G9ip5iZV2VFgv0ANEJgF0rlXG32o6I_WX7Ifxio8kMOn9MtdhMi7XBBnPbLGlpDte3vmN3FCdIfCPt5ci17pcv-i7kfwnvTGjwYXUlpVyukXs6QL2e77ELcaBl3GRSlS8Sil4HJ50sdegXvVDiPp6UuaxjzeMxtuq7yVApPkomp4vmKNi19sg-a5H62oWa9ar80ryOVUs_H23DqolPxt8lR5ZcK4SptTp5FjCeNbAwKn673ZnQCTJQf7AFMO0Ry2QQDiOCs8" />
+            <div>
+              <p class="font-bold">Suresh G.</p>
+              <p class="text-xs text-on-surface-variant">Farmer Union Representative</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section class="py-32 px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div>
+          <h2 class="font-headline text-4xl font-bold mb-6">Get in Touch</h2>
+          <p class="text-on-surface-variant mb-12 text-lg">Have questions about setting up your dairy with Dudhiya? Our
+            team of experts is ready to assist you in every step of the transformation.</p>
+          <div class="space-y-6">
+            <div
+              class="flex items-center gap-6 p-6 bg-surface-container-low rounded-lg border border-transparent hover:border-primary/20 transition-all">
+              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary">
+                <span class="material-symbols-outlined">call</span>
+              </div>
+              <div>
+                <p class="text-sm text-on-surface-variant font-medium">Call Us</p>
+                <p class="text-xl font-bold">+91 (800) 123-4567</p>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-6 p-6 bg-surface-container-low rounded-lg border border-transparent hover:border-primary/20 transition-all">
+              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary">
+                <span class="material-symbols-outlined">mail</span>
+              </div>
+              <div>
+                <p class="text-sm text-on-surface-variant font-medium">Email Support</p>
+                <p class="text-xl font-bold">hello@dudhiya.app</p>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-6 p-6 bg-surface-container-low rounded-lg border border-transparent hover:border-primary/20 transition-all">
+              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary">
+                <span class="material-symbols-outlined">location_on</span>
+              </div>
+              <div>
+                <p class="text-sm text-on-surface-variant font-medium">Visit Office</p>
+                <p class="text-xl font-bold">IT Park, Sector 4, Pune, India</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-surface-container-lowest p-10 rounded-xl shadow-lg">
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-sm font-semibold ml-1">Your Name</label>
+                <input
+                  class="w-full bg-surface-container-highest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/40 transition-all"
+                  placeholder="John Doe" type="text" />
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-semibold ml-1">Email Address</label>
+                <input
+                  class="w-full bg-surface-container-highest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/40 transition-all"
+                  placeholder="john@example.com" type="email" />
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-semibold ml-1">Dairy Name</label>
+              <input
+                class="w-full bg-surface-container-highest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/40 transition-all"
+                placeholder="Sunrise Dairy" type="text" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-semibold ml-1">Message</label>
+              <textarea
+                class="w-full bg-surface-container-highest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/40 transition-all"
+                placeholder="How can we help you?" rows="4"></textarea>
+            </div>
+            <button
+              class="w-full primary-gradient text-on-primary py-4 rounded-full font-bold text-lg hover:opacity-90 transition-all">Send
+              Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-slate-100 py-16 w-full">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div>
+          <div class="text-xl font-bold text-blue-900 mb-6">Dudhiya</div>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">The world's most advanced smart dairy management
+            ecosystem, built for the next generation of dairy farmers.</p>
+          <div class="flex gap-4">
+            <div
+              class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center hover:bg-primary transition-colors hover:text-white cursor-pointer">
+              <span class="material-symbols-outlined text-sm">share</span>
+            </div>
+            <div
+              class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center hover:bg-primary transition-colors hover:text-white cursor-pointer">
+              <span class="material-symbols-outlined text-sm">podcasts</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6">Product</h4>
+          <ul class="space-y-4">
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">Features</a></li>
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">Milk Calculator</a></li>
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">Wallet System</a></li>
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">Security</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6">Company</h4>
+          <ul class="space-y-4">
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">About Us</a></li>
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">FAQ</a></li>
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">Terms of Service</a></li>
+            <li><a class="text-slate-500 hover:underline decoration-blue-500 underline-offset-4 transition-all"
+                href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6">Newsletter</h4>
+          <p class="text-sm text-slate-500 mb-4">Get the latest dairy industry updates delivered to your inbox.</p>
+          <div class="flex gap-2">
+            <input class="bg-white border-none rounded-lg p-3 text-sm flex-grow" placeholder="Email" type="email" />
+            <button class="bg-primary text-white p-3 rounded-lg"><span
+                class="material-symbols-outlined text-sm">send</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-slate-500 text-sm">© 2024 Dudhiya Smart Dairy. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a class="text-slate-500 text-sm hover:text-primary transition-colors" href="#">Privacy Policy</a>
+          <a class="text-slate-500 text-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+          <a class="text-slate-500 text-sm hover:text-primary transition-colors" href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

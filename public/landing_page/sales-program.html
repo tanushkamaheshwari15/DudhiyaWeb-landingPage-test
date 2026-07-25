@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="sales_page_title">Become a Dudhiya Sales Agent - Earn Cash & Discounts</title>
+  <link rel="icon" type="images/png" href="assets/Dudhiya-welcome.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"],
+            headline: ["Outfit", "sans-serif"],
+          },
+          colors: {
+            primary: "#00288e",
+            secondary: "#00714d",
+            surface: "#ffffff",
+            "surface-container": "#f5f5f5",
+            "surface-container-low": "#f0f4ff",
+            "on-surface": "#1a1a1a",
+            "on-surface-variant": "#666666",
+            "on-primary": "#ffffff",
+            outline: "#e0e0e0",
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="components/navbar.css">
+  <style>
+    .primary-gradient {
+      background: linear-gradient(135deg, #00288e 0%, #1e40af 100%);
+    }
+
+    .glow-shadow-emerald {
+      box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.3);
+    }
+
+    .glow-shadow-primary {
+      box-shadow: 0 10px 30px -10px rgba(0, 40, 142, 0.3);
+    }
+
+    /* FAQ accordion styling */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-top: 0.5rem;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen font-sans antialiased">
+  <!-- Navbar Component Container -->
+  <div id="navbar-container"></div>
+
+  <!-- Header Hero Section -->
+  <section class="primary-gradient text-white pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_100%)]"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <span
+        class="inline-flex items-center gap-1.5 bg-white/10 text-yellow-300 px-3 py-1.5 rounded-full text-xs font-bold mb-4 border border-white/20">
+        <span class="material-symbols-outlined text-xs">campaign</span>
+        <span data-i18n="sales_hero_badge">Referral Agent Program</span>
+      </span>
+      <h1 class="font-headline text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4"
+        data-i18n="sales_hero_title">
+        Become a Dudhiya Sales Agent & Earn Big
+      </h1>
+      <p class="text-blue-100 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed"
+        data-i18n="sales_hero_subtitle">
+        Help other dairies digitize their collections using your referral code. Earn instant cash payouts and get a year of subscription discounts.
+      </p>
+    </div>
+  </section>
+
+  <!-- Referral Calculator Section -->
+  <section class="py-8 sm:py-12 px-4 max-w-4xl mx-auto w-full relative z-10 -mt-6 sm:-mt-8">
+    <div class="bg-white rounded-2xl p-5 sm:p-8 shadow-md border border-slate-200">
+      <div class="text-center mb-8">
+        <h2 class="font-headline text-xl sm:text-2xl font-bold text-slate-900 mb-2" data-i18n="calc_title">Estimate Your Earnings</h2>
+        <p class="text-slate-500 text-xs sm:text-sm" data-i18n="calc_subtitle">Drag the slider to see how much you earn based on the number of dairies you refer.</p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Slider Control -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs sm:text-sm font-bold text-slate-700" data-i18n="calc_label_referrals">Number of Referred Dairies</label>
+            <span class="text-lg font-black text-primary" id="referredCount">10 <span class="text-sm font-medium text-slate-500" data-i18n="calc_dairies">Dairies</span></span>
+          </div>
+          <input type="range" id="referralsSlider" min="1" max="30" step="1" value="10"
+            class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary">
+        </div>
+
+        <!-- Rewards Display -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <!-- Reward 1: Cash Bonus -->
+          <div class="bg-emerald-50/50 p-4 sm:p-5 rounded-xl border border-emerald-100 text-center">
+            <span class="text-[10px] sm:text-xs font-semibold text-emerald-700 uppercase tracking-wider" data-i18n="calc_reward_cash">Instant Cash Bonus</span>
+            <div class="text-xl sm:text-2xl font-extrabold text-emerald-600 mt-1">₹<span id="cashReward">5,000</span></div>
+            <span class="text-[10px] text-slate-400 font-medium" data-i18n="calc_reward_cash_desc">Directly added to your account</span>
+          </div>
+
+          <!-- Reward 2: Discount -->
+          <div class="bg-blue-50/50 p-4 sm:p-5 rounded-xl border border-blue-100 text-center">
+            <span class="text-[10px] sm:text-xs font-semibold text-blue-600 uppercase tracking-wider" data-i18n="calc_reward_discount">Subscription Discount</span>
+            <div class="text-xl sm:text-2xl font-extrabold text-primary mt-1"><span id="discountReward">20</span>% OFF</div>
+            <span class="text-[10px] text-slate-400 font-medium" data-i18n="calc_reward_discount_desc">Valid for a full 1 year</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Refer Steps -->
+  <section class="py-8 sm:py-12 px-4 max-w-7xl mx-auto w-full">
+    <div class="text-center mb-10">
+      <h2 class="font-headline text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-2" data-i18n="steps_title">Simple 3-Step Process</h2>
+      <p class="text-slate-500 text-xs sm:text-sm max-w-xl mx-auto" data-i18n="steps_subtitle">Follow these quick steps to start referring local dairies and claim your sales agent rewards.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Step 1 -->
+      <div class="bg-white rounded-xl p-5 border border-slate-200 text-center">
+        <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <span class="material-symbols-outlined text-primary text-xl">qr_code_scanner</span>
+        </div>
+        <h3 class="font-bold text-slate-800 text-sm mb-2" data-i18n="step1_title">1. Copy Referral Code</h3>
+        <p class="text-xs text-slate-500 leading-relaxed" data-i18n="step1_desc">Log in to your Dudhiya partner dashboard profile page and copy your unique referral code.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bg-white rounded-xl p-5 border border-slate-200 text-center">
+        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <span class="material-symbols-outlined text-emerald-600 text-xl">share</span>
+        </div>
+        <h3 class="font-bold text-slate-800 text-sm mb-2" data-i18n="step2_title">2. Share & Help Install</h3>
+        <p class="text-xs text-slate-500 leading-relaxed" data-i18n="step2_desc">Share your code with dairy owners. Help them download the app and enter your code during registration.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bg-white rounded-xl p-5 border border-slate-200 text-center">
+        <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <span class="material-symbols-outlined text-primary text-xl">paid</span>
+        </div>
+        <h3 class="font-bold text-slate-800 text-sm mb-2" data-i18n="step3_title">3. Claim Your Rewards</h3>
+        <p class="text-xs text-slate-500 leading-relaxed" data-i18n="step3_desc">Cash is credited instantly to your partner account, and your subscription discount activates immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Dashboard Showcase Section -->
+  <section class="py-12 px-4 max-w-7xl mx-auto w-full bg-slate-100/50 rounded-3xl border border-slate-200/80 mb-12">
+    <div class="text-center mb-10">
+      <span class="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs font-bold mb-3">
+        <span class="material-symbols-outlined text-xs">dashboard</span>
+        <span data-i18n="dash_showcase_badge">Partner Portal</span>
+      </span>
+      <h2 class="font-headline text-xl sm:text-2xl font-bold text-slate-900 mb-2" data-i18n="dash_showcase_title">Track Everything Live in Your Dashboard</h2>
+      <p class="text-slate-500 text-xs sm:text-sm max-w-2xl mx-auto" data-i18n="dash_showcase_subtitle">Dudhiya provides a complete partner portal where you can monitor referred dairies, live usage status, cash payouts, and active discounts.</p>
+    </div>
+
+    <!-- Simulated Dashboard Card -->
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <!-- Dashboard Top Header Bar -->
+      <div class="bg-slate-900 text-white p-4 flex items-center justify-between border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
+            <span class="material-symbols-outlined text-blue-400 text-lg">donut_large</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-xs sm:text-sm">Dudhiya Partner Hub</h4>
+            <p class="text-[9px] sm:text-[10px] text-slate-400">Referral ID: <span class="font-mono text-blue-300">DUD-PARTNER-492</span></p>
+          </div>
+        </div>
+        <div class="bg-primary/20 text-blue-300 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full border border-primary/40">
+          Agent Dashboard
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 p-4 bg-slate-50 border-b border-slate-200">
+        <div class="bg-white p-3 rounded-xl border border-slate-200/60 shadow-2xs">
+          <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider" data-i18n="dash_metric_total_referred">Total Referred</p>
+          <p class="text-lg font-black text-slate-800 mt-1">12 <span class="text-xs text-slate-400 font-medium" data-i18n="calc_dairies">Dairies</span></p>
+        </div>
+        <div class="bg-white p-3 rounded-xl border border-slate-200/60 shadow-2xs">
+          <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider" data-i18n="dash_metric_active">Active Dairies</p>
+          <p class="text-lg font-black text-emerald-600 mt-1">8 <span class="text-xs text-slate-400 font-medium" data-i18n="calc_dairies_active">Live</span></p>
+        </div>
+        <div class="bg-white p-3 rounded-xl border border-slate-200/60 shadow-2xs">
+          <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider" data-i18n="dash_metric_cash_bonus">Total Cash Earned</p>
+          <p class="text-lg font-black text-emerald-600 mt-1">₹4,000</p>
+        </div>
+        <div class="bg-white p-3 rounded-xl border border-slate-200/60 shadow-2xs">
+          <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider" data-i18n="dash_metric_discount">Current Discount Rate</p>
+          <p class="text-lg font-black text-primary mt-1">16% OFF</p>
+        </div>
+      </div>
+
+      <!-- Referred Dairies Live Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-[10px] sm:text-xs text-slate-400 font-bold">
+              <th class="p-3 pl-4" data-i18n="dash_referred_list">Referred Dairies</th>
+              <th class="p-3" data-i18n="dash_live_status">Daily Work Status</th>
+              <th class="p-3 pr-4" data-i18n="dash_reward">Reward Earned</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+            <tr>
+              <td class="p-3 pl-4 font-bold text-slate-800">Krishna Milk Collection</td>
+              <td class="p-3">
+                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  <span data-i18n="status_active">Active (Daily Collection)</span>
+                </span>
+              </td>
+              <td class="p-3 pr-4 font-bold text-emerald-600" data-i18n="reward_active_desc">₹500 Cash Payout + 2% Discount Applied</td>
+            </tr>
+            <tr>
+              <td class="p-3 pl-4 font-bold text-slate-800">Shiv Shambo Dairy</td>
+              <td class="p-3">
+                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  <span data-i18n="status_active">Active (Daily Collection)</span>
+                </span>
+              </td>
+              <td class="p-3 pr-4 font-bold text-emerald-600" data-i18n="reward_active_desc">₹500 Cash Payout + 2% Discount Applied</td>
+            </tr>
+            <tr>
+              <td class="p-3 pl-4 font-bold text-slate-800">Punjab Dairy Farm</td>
+              <td class="p-3">
+                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span data-i18n="status_inactive">Inactive (No Shift Today)</span>
+                </span>
+              </td>
+              <td class="p-3 pr-4 font-semibold text-slate-400" data-i18n="reward_inactive_desc">Awaiting Active Collection Shift</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed FAQs -->
+  <section class="bg-blue-50/30 py-10 sm:py-16 px-4 w-full border-t border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <h3 class="font-headline text-xl sm:text-2xl font-bold text-slate-900 mb-8 text-center" data-i18n="faq_title">Frequently Asked Questions</h3>
+      
+      <div class="space-y-3">
+        <!-- FAQ 1 -->
+        <div class="faq-item bg-white rounded-xl border border-slate-200/80 shadow-sm p-4 sm:p-5 cursor-pointer select-none transition-all hover:border-primary/20">
+          <div class="flex items-center justify-between gap-4">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900" data-i18n="q1">How is the cash bonus paid?</h4>
+            <span class="material-symbols-outlined text-slate-400 faq-icon transition-transform duration-300 text-lg">expand_more</span>
+          </div>
+          <div class="faq-answer text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p data-i18n="a1">The cash bonus of ₹500 is directly credited to your registered bank account or UPI address within 24 hours of a referred dairy center completing their first active collection shift.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item bg-white rounded-xl border border-slate-200/80 shadow-sm p-4 sm:p-5 cursor-pointer select-none transition-all hover:border-primary/20">
+          <div class="flex items-center justify-between gap-4">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900" data-i18n="q2">Is there any limit to the subscription discount?</h4>
+            <span class="material-symbols-outlined text-slate-400 faq-icon transition-transform duration-300 text-lg">expand_more</span>
+          </div>
+          <div class="faq-answer text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p data-i18n="a2">You earn a 2% discount per active referral. You can stack this discount up to a maximum of 20% off your subscription fee or wallet collection charges for a full 1 year.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <!-- <div class="faq-item bg-white rounded-xl border border-slate-200/80 shadow-sm p-4 sm:p-5 cursor-pointer select-none transition-all hover:border-primary/20">
+          <div class="flex items-center justify-between gap-4">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900" data-i18n="q3">Do my referred dairies need to pay to activate my reward?</h4>
+            <span class="material-symbols-outlined text-slate-400 faq-icon transition-transform duration-300 text-lg">expand_more</span>
+          </div>
+          <div class="faq-answer text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p data-i18n="a3">No! They can register under the First Month Free Trial. Once they start recording active daily shifts during their free trial, your cash bonus and subscription discount are unlocked.</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component Container -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Localized dictionary for sales program
+    const salesTranslations = {
+      'en': {
+        'sales_page_title': 'Become a Dudhiya Sales Agent - Earn Cash & Discounts',
+        'sales_hero_badge': 'Referral Agent Program',
+        'sales_hero_title': 'Become a Dudhiya Sales Agent & Earn Big',
+        'sales_hero_subtitle': 'Help other dairies digitize their collections using your referral code. Earn instant cash payouts and get a year of subscription discounts.',
+        'calc_title': 'Estimate Your Earnings',
+        'calc_subtitle': 'Drag the slider to see how much you earn based on the number of active dairies you refer (dairies actively recording collection shifts).',
+        'calc_label_referrals': 'Number of Active Referred Dairies',
+        'calc_dairies': 'Dairies',
+        'calc_dairies_active': 'Active',
+        'calc_reward_cash': 'Instant Cash Bonus',
+        'calc_reward_cash_desc': 'Directly added to your account',
+        'calc_reward_discount': 'Subscription Discount',
+        'calc_reward_discount_desc': 'Valid for a full 1 year',
+        'steps_title': 'Simple 3-Step Process',
+        'steps_subtitle': 'Follow these quick steps to start referring local dairies and claim your sales agent rewards.',
+        'step1_title': '1. Copy Referral Code',
+        'step1_desc': 'Log in to your Dudhiya partner dashboard profile page and copy your unique referral code.',
+        'step2_title': '2. Share & Help Install',
+        'step2_desc': 'Share your code with dairy owners. Help them download the app and enter your code during registration.',
+        'step3_title': '3. Claim Your Rewards',
+        'step3_desc': 'Cash is credited instantly to your partner account, and your subscription discount activates immediately.',
+        'dash_showcase_badge': 'Partner Portal',
+        'dash_showcase_title': 'Track Everything Live in Your Dashboard',
+        'dash_showcase_subtitle': 'Dudhiya provides a complete partner dashboard where you can see who you added, who is active on a daily basis, and how much bonus/discount you have earned.',
+        'dash_referred_list': 'Referred Dairies',
+        'dash_live_status': 'Daily Work Status',
+        'dash_reward': 'Reward Earned',
+        'status_active': 'Active (Daily Collection)',
+        'status_inactive': 'Inactive (No Shift Today)',
+        'reward_active_desc': '₹500 Cash Payout + 2% Discount Applied',
+        'reward_inactive_desc': 'Awaiting Active Collection Shift',
+        'dash_metric_total_referred': 'Total Referred',
+        'dash_metric_active': 'Active Dairies',
+        'dash_metric_cash_bonus': 'Total Cash Earned',
+        'dash_metric_discount': 'Current Discount Rate',
+        'faq_title': 'Frequently Asked Questions',
+        'q1': 'How is the cash bonus paid?',
+        'a1': 'The cash bonus of ₹500 is directly credited to your registered bank account or UPI address within 24 hours of a referred dairy center completing their first active collection shift.',
+        'q2': 'Is there any limit to the subscription discount?',
+        'a2': 'You earn a 2% discount per active referral. You can stack this discount up to a maximum of 20% off your subscription fee or wallet collection charges for a full 1 year.',
+        // 'q3': 'Do my referred dairies need to pay to activate my reward?',
+        // 'a3': 'No! They can register under the First Month Free Trial. Once they start recording active daily shifts during their free trial, your cash bonus and subscription discount are unlocked.'
+      },
+      'hi': {
+        'sales_page_title': 'दुधिया सेल्स एजेंट बनें - नकद और छूट कमाएं',
+        'sales_hero_badge': 'रेफ़रल एजेंट प्रोग्राम',
+        'sales_hero_title': 'दुधिया सेल्स एजेंट बनें और बड़ा कमाएं',
+        'sales_hero_subtitle': 'अपने रेफ़रल कोड का उपयोग करके अन्य डेयरियों को अपने संग्रह को डिजिटल बनाने में मदद करें। त्वरित नकद भुगतान प्राप्त करें और 1 वर्ष की सदस्यता छूट पाएं।',
+        'calc_title': 'अपनी कमाई का अनुमान लगाएं',
+        'calc_subtitle': 'आपके द्वारा रेफ़र की जाने वाली सक्रिय डेयरियों (दैनिक संग्रह रिकॉर्ड करने वाली डेयरियों) की संख्या के आधार पर आप कितना कमाते हैं, यह देखने के लिए स्लाइडर को खींचें।',
+        'calc_label_referrals': 'सक्रिय रेफ़र की गई डेयरियों की संख्या',
+        'calc_dairies': 'डेयरियां',
+        'calc_dairies_active': 'लाइव सक्रिय',
+        'calc_reward_cash': 'त्वरित नकद बोनस',
+        'calc_reward_cash_desc': 'सीधे आपके खाते में जोड़ा गया',
+        'calc_reward_discount': 'सदस्यता छूट',
+        'calc_reward_discount_desc': 'पूरे 1 वर्ष के लिए वैध',
+        'steps_title': 'आसान 3-चरण प्रक्रिया',
+        'steps_subtitle': 'स्थानीय डेयरियों को रेफ़र करना शुरू करने और अपने सेल्स एजेंट पुरस्कारों का दावा करने के लिए इन त्वरित चरणों का पालन करें।',
+        'step1_title': '1. रेफ़रल कोड कॉपी करें',
+        'step1_desc': 'अपने दुधिया पार्टनर डैशबोर्ड प्रोफ़ाइल पेज पर लॉग इन करें और अपना अनूठा रेफ़रल कोड कॉपी करें।',
+        'step2_title': '2. साझा करें और इंस्टॉल करें',
+        'step2_desc': 'डेयरी मालिकों के साथ अपना कोड साझा करें। उन्हें ऐप डाउनलोड करने और पंजीकरण के दौरान अपना कोड दर्ज करने में मदद करें।',
+        'step3_title': '3. अपने पुरस्कारों का दावा करें',
+        'step3_desc': 'नकद राशि आपके पार्टनर खाते में तुरंत जमा कर दी जाती है, और आपकी सदस्यता छूट तुरंत सक्रिय हो जाती है।',
+        'dash_showcase_badge': 'पार्टनर पोर्टल',
+        'dash_showcase_title': 'अपने डैशबोर्ड पर सब कुछ लाइव ट्रैक करें',
+        'dash_showcase_subtitle': 'दुधिया एक पूर्ण पार्टनर डैशबोर्ड प्रदान करता है जहां आप देख सकते हैं कि आपने कितने लोगों को जोड़ा है, कौन दैनिक आधार पर काम कर रहा है और कौन नहीं, और आपको कितना बोनस/छूट मिली है।',
+        'dash_referred_list': 'रेफ़र की गई डेयरियां',
+        'dash_live_status': 'दैनिक कार्य की स्थिति',
+        'dash_reward': 'अर्जित इनाम',
+        'status_active': 'सक्रिय (दैनिक संग्रह)',
+        'status_inactive': 'निष्क्रिय (आज कोई शिफ्ट नहीं)',
+        'reward_active_desc': '₹500 नकद भुगतान + 2% छूट लागू',
+        'reward_inactive_desc': 'सक्रिय संग्रह शिफ्ट की प्रतीक्षा है',
+        'dash_metric_total_referred': 'कुल रेफ़र की गई',
+        'dash_metric_active': 'सक्रिय डेयरियां',
+        'dash_metric_cash_bonus': 'कुल अर्जित नकद',
+        'dash_metric_discount': 'वर्तमान छूट दर',
+        'faq_title': 'अक्सर पूछे जाने वाले प्रश्न',
+        'q1': 'नकद बोनस का भुगतान कैसे किया जाता है?',
+        'a1': '₹500 का नकद बोनस सीधे आपके पंजीकृत बैंक खाते या यूपीआई पते पर 24 घंटे के भीतर जमा कर दिया जाता है जब एक रेफ़र किया गया डेयरी केंद्र अपनी पहली सक्रिय दूध संग्रह शिफ्ट पूरी करता है।',
+        'q2': 'क्या सदस्यता छूट की कोई सीमा है?',
+        'a2': 'आप प्रत्येक सक्रिय रेफ़रल पर 2% छूट अर्जित करते हैं। आप पूरे 1 वर्ष के लिए अपनी सदस्यता शुल्क या वॉलेट संग्रह शुल्कों पर अधिकतम 20% तक की छूट प्राप्त कर सकते हैं।',
+        // 'q3': 'क्या मेरे पुरस्कारों को सक्रिय करने के लिए रेफ़र की गई डेयरियों को भुगतान करना होगा?',
+        // 'a3': 'नहीं! वे पहले महीने के निःशुल्क परीक्षण के तहत पंजीकरण कर सकते हैं। एक बार जब वे अपने निःशुल्क परीक्षण के दौरान सक्रिय दैनिक शिफ्ट रिकॉर्ड करना शुरू करते हैं, तो आपका नकद बोनस और सदस्यता छूट सक्रिय हो जाती।'
+      },
+      'pa': {
+        'sales_page_title': 'ਦੁਧੀਆ ਸੇਲਜ਼ ਏਜੰਟ ਬਣੋ - ਨਕਦ ਅਤੇ ਛੋਟ ਕਮਾਓ',
+        'sales_hero_badge': 'ਰੈਫਰਲ ਏਜੰਟ ਪ੍ਰੋਗਰਾਮ',
+        'sales_hero_title': 'ਦੁਧੀਆ ਸੇਲਜ਼ ਏਜੰਟ ਬਣੋ ਅਤੇ ਵੱਡੀ ਕਮਾਈ ਕਰੋ',
+        'sales_hero_subtitle': 'ਆਪਣੇ ਰੈਫਰਲ ਕੋਡ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਹੋਰ ਡੇਅਰੀਆਂ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰੋ। ਤੁਰੰਤ ਨਕਦ ਭੁਗਤਾਨ ਪ੍ਰਾਪਤ ਕਰੋ ਅਤੇ 1 ਸਾਲ ਦੀ ਗਾਹਕੀ ਛੋਟ ਪਾਓ।',
+        'calc_title': 'ਆਪਣੀ ਕਮਾਈ ਦਾ ਅਨੁਮਾਨ ਲਗਾਓ',
+        'calc_subtitle': 'ਤੁਹਾਡੇ ਦੁਆਰਾ ਰੈਫਰ ਕੀਤੀਆਂ ਸਰਗਰਮ ਡੇਅਰੀਆਂ (ਰੋਜ਼ਾਨਾ ਸੰਗ੍ਰਹਿ ਰਿਕਾਰਡ ਕਰਨ ਵਾਲੀਆਂ ਡੇਅਰੀਆਂ) ਦੀ ਸੰਖਿਆ ਦੇ ਅਧਾਰ ਤੇ ਤੁਸੀਂ ਕਿੰਨਾ ਕਮਾਉਂਦੇ ਹੋ ਇਹ ਵੇਖਣ ਲਈ ਸਲਾਈਡਰ ਖਿੱਚੋ।',
+        'calc_label_referrals': 'ਸਰਗਰਮ ਰੈਫਰ ਕੀਤੀਆਂ ਡੇਅਰੀਆਂ ਦੀ ਸੰਖਿਆ',
+        'calc_dairies': 'ਡੇਅਰੀਆਂ',
+        'calc_dairies_active': 'ਲਾਈਵ ਸਰਗਰਮ',
+        'calc_reward_cash': 'ਤੁਰੰਤ ਨਕਦ ਬੋਨਸ',
+        'calc_reward_cash_desc': 'ਸਿੱਧੇ ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚ ਜੋੜਿਆ ਗਿਆ',
+        'calc_reward_discount': 'ਗਾਹਕੀ ਛੋਟ',
+        'calc_reward_discount_desc': 'ਪੂਰੇ 1 ਸਾਲ ਲਈ ਯੋਗ',
+        'steps_title': 'ਸਧਾਰਨ 3-ਪੜਾਵੀ ਪ੍ਰਕਿਰਿਆ',
+        'steps_subtitle': 'ਸਥਾਨਕ ਡੇਅਰੀਆਂ ਨੂੰ ਰੈਫਰ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰਨ ਅਤੇ ਆਪਣੇ ਇਨਾਮਾਂ ਦਾ ਦਾਅਵਾ ਕਰਨ ਲਈ ਇਨ੍ਹਾਂ ਕਦਮਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ।',
+        'step1_title': '1. ਰੈਫਰਲ ਕੋਡ ਕਾਪੀ ਕਰੋ',
+        'step1_desc': 'ਆਪਣੇ ਦੁਧੀਆ ਪਾਰਟਨਰ ਡੈਸ਼ਬੋਰਡ ਪ੍ਰੋਫਾਈਲ ਪੇਜ ਤੇ ਲੌਗਇਨ ਕਰੋ ਅਤੇ ਆਪਣਾ ਵਿਲੱਖਣ ਰੈਫਰਲ ਕੋਡ ਕਾਪੀ ਕਰੋ।',
+        'step2_title': '2. ਸਾਂਝਾ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ',
+        'step2_desc': 'ਡੇਅਰੀ ਮਾਲਕਾਂ ਨਾਲ ਆਪਣਾ ਕੋਡ ਸਾਂਝਾ ਕਰੋ। ਉਨ੍ਹਾਂ ਨੂੰ ਐਪ ਡਾਊਨਲੋਡ ਕਰਨ ਅਤੇ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਦੌਰਾਨ ਕੋਡ ਦਰਜ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰੋ।',
+        'step3_title': '3. ਆਪਣੇ ਇਨਾਮ ਪ੍ਰਾਪਤ ਕਰੋ',
+        'step3_desc': 'ਨਕਦ ਰਾਸ਼ੀ ਤੁਹਾਡੇ ਪਾਰਟਨਰ ਖਾਤੇ ਵਿੱਚ ਤੁਰੰਤ ਜਮ੍ਹਾ ਹੋ ਜਾਂਦੀ ਹੈ, ਅਤੇ ਤੁਹਾਡੀ ਗਾਹਕੀ ਛੋਟ ਤੁਰੰਤ ਸਰਗਰਮ ਹੋ ਜਾਂਦੀ ਹੈ।',
+        'dash_showcase_badge': 'ਪਾਰਟਨਰ ਪੋਰਟਲ',
+        'dash_showcase_title': 'ਆਪਣੇ ਡੈਸ਼ਬੋਰਡ ਤੇ ਸਭ ਕੁਝ ਲਾਈਵ ਟ੍ਰੈਕ ਕਰੋ',
+        'dash_showcase_subtitle': 'ਦੁਧੀਆ ਇੱਕ ਸੰਪੂਰਨ ਪਾਰਟਨਰ ਡੈਸ਼ਬੋਰਡ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ ਜਿੱਥੇ ਤੁਸੀਂ ਦੇਖ ਸਕਦੇ ਹੋ ਕਿ ਤੁਸੀਂ ਕਿੰਨੇ ਲੋਕਾਂ ਨੂੰ ਜੋੜਿਆ ਹੈ, ਕੌਣ ਰੋਜ਼ਾਨਾ ਅਧਾਰ ਤੇ ਕੰਮ ਕਰ ਰਿਹਾ ਹੈ ਅਤੇ ਕੌਣ ਨਹੀਂ, ਅਤੇ ਤੁਹਾਨੂੰ ਕਿੰਨਾ ਬੋਨਸ/ਛੋਟ ਮਿਲੀ ਹੈ।',
+        'dash_referred_list': 'ਰੈਫਰ ਕੀਤੀਆਂ ਡੇਅਰੀਆਂ',
+        'dash_live_status': 'ਰੋਜ਼ਾਨਾ ਕੰਮ ਦੀ ਸਥਿਤੀ',
+        'dash_reward': 'ਕਮਾਇਆ ਇਨਾਮ',
+        'status_active': 'ਸਰਗਰਮ (ਰੋਜ਼ਾਨਾ ਸੰਗ੍ਰਹਿ)',
+        'status_inactive': 'ਨਿਸ਼ਕਿਰਿਆ (ਅੱਜ ਕੋਈ ਸ਼ਿਫਟ ਨਹੀਂ)',
+        'reward_active_desc': '₹500 ਨਕਦ ਭੁਗਤਾਨ + 2% ਛੋਟ ਲਾਗੂ',
+        'reward_inactive_desc': 'ਸਰਗਰਮ ਸੰਗ੍ਰਹਿ ਸ਼ਿਫਟ ਦੀ ਉਡੀਕ',
+        'dash_metric_total_referred': 'ਕੁੱਲ ਰੈਫਰ ਕੀਤੀਆਂ',
+        'dash_metric_active': 'ਸਰਗਰਮ ਡੇਅਰੀਆਂ',
+        'dash_metric_cash_bonus': 'ਕੁੱਲ ਕਮਾਇਆ ਨਕਦ',
+        'dash_metric_discount': 'ਮੌਜੂਦਾ ਛੋਟ ਦਰ',
+        'faq_title': 'ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ',
+        'q1': 'ਨਕਦ ਬੋਨਸ ਦਾ ਭੁਗਤਾਨ ਕਿਵੇਂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ?',
+        'a1': '₹500 ਦਾ ਨਕਦ ਬੋਨਸ ਸਿੱਧੇ ਤੁਹਾਡੇ ਰਜਿਸਟਰਡ ਬੈਂਕ ਖਾਤੇ ਜਾਂ ਯੂਪੀਆਈ ਪਤੇ ਤੇ 24 ਘੰਟਿਆਂ ਦੇ ਅੰਦਰ ਜਮ੍ਹਾ ਹੋ ਜਾਂਦਾ ਹੈ ਜਦੋਂ ਕੋਈ ਰੈਫਰ ਕੀਤੀ ਡੇਅਰੀ ਆਪਣੀ ਪਹਿਲੀ ਸਰਗਰਮ ਸੰਗ੍ਰਹਿ ਸ਼ਿਫਟ ਪੂਰੀ ਕਰਦੀ ਹੈ।',
+        'q2': 'ਕੀ ਗਾਹਕੀ ਛੋਟ ਦੀ ਕੋਈ ਸੀਮਾ ਹੈ?',
+        'a2': 'ਤੁਸੀਂ ਹਰ ਸਰਗਰਮ ਰੈਫਰਲ ਤੇ 2% ਛੋਟ ਕਮਾਉਂਦੇ ਹੋ। ਤੁਸੀਂ ਪੂਰੇ 1 ਸਾਲ ਲਈ ਆਪਣੀ ਗਾਹਕੀ ਫੀਸ ਜਾਂ ਵਾਲਿਟ ਖਰਚਿਆਂ ਤੇ ਵੱਧ ਤੋਂ ਵੱਧ 20% ਤੱਕ ਛੋਟ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ ਹੋ।',
+        // 'q3': 'ਕੀ ਮੇਰੇ ਇਨਾਮਾਂ ਨੂੰ ਸਰਗਰਮ ਕਰਨ ਲਈ ਰੈਫਰ ਕੀਤੀਆਂ ਡੇਅਰੀਆਂ ਨੂੰ ਭੁਗਤਾਨ ਕਰਨਾ ਪਵੇਗਾ?',
+        // 'a3': 'ਨਹੀਂ! ਉਹ ਪਹਿਲੇ ਮਹੀਨੇ ਦੇ ਮੁਫਤ ਟ੍ਰਾਇਲ ਅਧੀਨ ਰਜਿਸਟਰ ਕਰ ਸਕਦੇ ਹਨ। ਇੱਕ ਵਾਰ ਜਦੋਂ ਉਹ ਰੋਜ਼ਾਨਾ ਸਰਗਰਮ ਸ਼ਿਫਟਾਂ ਰਿਕਾਰਡ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰਦੇ ਹਨ, ਤਾਂ ਤੁਹਾਡਾ ਨਕਦ ਬੋਨਸ ਅਤੇ ਗਾਹਕੀ ਛੋਟ ਕਿਰਿਆਸ਼ੀਲ ਹੋ ਜਾਂਦੀ ਹੈ।'
+      },
+      'kn': {
+        'sales_page_title': 'ದುಧಿಯಾ ಸೇಲ್ಸ್ ಏಜೆಂಟ್ ಆಗಿ - ನಗದು ಮತ್ತು ರಿಯಾಯಿತಿಗಳನ್ನು ಗಳಿಸಿ',
+        'sales_hero_badge': 'ರೆಫರಲ್ ಏಜೆಂಟ್ ಕಾರ್ಯಕ್ರಮ',
+        'sales_hero_title': 'ದುಧಿಯಾ ಸೇಲ್ಸ್ ಏಜೆಂಟ್ ಆಗಿ ಮತ್ತು ದೊಡ್ಡದಾಗಿ ಗಳಿಸಿ',
+        'sales_hero_subtitle': 'ನಿಮ್ಮ ರೆಫರಲ್ ಕೋಡ್ ಬಳಸಿ ಇತರ ಡೈರಿಗಳನ್ನು ಡಿಜಿಟಲೀಕರಣಗೊಳಿಸಲು ಸಹಾಯ ಮಾಡಿ. ತ್ವರಿತ ನಗದು ಪಾವತಿಗಳು ಮತ್ತು 1 ವರ್ಷದ ಚಂದಾದಾರಿಕೆ ರಿಯಾಯಿತಿಗಳನ್ನು ಪಡೆಯಿರಿ.',
+        'calc_title': 'ನಿಮ್ಮ ಗಳಿಕೆಯನ್ನು ಅಂದಾಜು ಮಾಡಿ',
+        'calc_subtitle': 'ನೀವು ಉಲ್ಲೇಖಿಸುವ ಸಕ್ರಿಯ ಡೈರಿಗಳ (ದೈನಂದಿನ ಸಂಗ್ರಹ ದಾಖಲಿಸುವ ಡೈರಿಗಳ) ಸಂಖ್ಯೆಯ ಆಧಾರದ ಮೇಲೆ ನೀವು ಎಷ್ಟು ಗಳಿಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ನೋಡಲು ಸ್ಲೈಡರ್ ಅನ್ನು ಎಳೆಯಿರಿ.',
+        'calc_label_referrals': 'ಸಕ್ರಿಯ ಉಲ್ಲೇಖಿತ ಡೈರಿಗಳ ಸಂಖ್ಯೆ',
+        'calc_dairies': 'ಡೈರಿಗಳು',
+        'calc_dairies_active': 'ಲೈವ್ ಸಕ್ರಿಯ',
+        'calc_reward_cash': 'ತ್ವರಿತ ನಗದು ಬೋನಸ್',
+        'calc_reward_cash_desc': 'ನೇರ ಬ್ಯಾಂಕ್ ಜಮೆ',
+        'calc_reward_discount': 'ಚಂದಾದಾರಿಕೆ ರಿಯಾಯಿತಿ',
+        'calc_reward_discount_desc': 'ಪೂರ್ಣ 1 ವರ್ಷಕ್ಕೆ ಮಾನ್ಯವಾಗಿರುತ್ತದೆ',
+        'steps_title': 'ಸರಳ 3-ಹಂತದ ಪ್ರಕ್ರಿಯೆ',
+        'steps_subtitle': 'ಸ್ಥಳೀಯ ಡೈರಿಗಳನ್ನು ಉಲ್ಲೇಖಿಸಲು ಮತ್ತು ನಿಮ್ಮ ಸೇಲ್ಸ್ ಏಜೆಂಟ್ ಬಹುಮಾನಗಳನ್ನು ಪಡೆಯಲು ಈ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ.',
+        'step1_title': '1. ರೆಫರಲ್ ಕೋಡ್ ನಕಲಿಸಿ',
+        'step1_desc': 'ನಿಮ್ಮ ದುಧಿಯಾ ಪಾಲುದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರೊಫೈಲ್ ಪುಟಕ್ಕೆ ಲಾಗ್ ಇನ್ ಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ವಿಶಿಷ್ಟ ರೆಫರಲ್ ಕೋಡ್ ಅನ್ನು ನಕಲಿಸಿ.',
+        'step2_title': '2. ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ಸ್ಥಾಪಿಸಲು ಸಹಾಯ ಮಾಡಿ',
+        'step2_desc': 'ಡೈರಿ ಮಾಲೀಕರೊಂದಿಗೆ ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಿ. ಆಪ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಮತ್ತು ನೋಂದಣಿ ಸಮಯದಲ್ಲಿ ಕೋಡ್ ನಮೂದಿಸಲು ಸಹಾಯ ಮಾಡಿ.',
+        'step3_title': '3. ನಿಮ್ಮ ಬಹುಮಾನಗಳನ್ನು ಪಡೆಯಿರಿ',
+        'step3_desc': 'ನಗದು ಹಣವನ್ನು ನಿಮ್ಮ ಪಾಲುದಾರ ಖಾತೆಗೆ ತಕ್ಷಣವೇ ಜಮಾ ಮಾಡಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಚಂದಾದಾರಿಕೆ ರಿಯಾಯಿತಿ ತಕ್ಷಣವೇ ಸಕ್ರಿಯಗೊಳ್ಳುತ್ತದೆ.',
+        'dash_showcase_badge': 'ಪಾಲುದಾರ ಪೋರ್ಟಲ್',
+        'dash_showcase_title': 'ನಿಮ್ಮ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ನಲ್ಲಿ ಎಲ್ಲವನ್ನೂ ಲೈವ್ ಆಗಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ',
+        'dash_showcase_subtitle': 'ದುಧಿಯಾ ಸಂಪೂರ್ಣ ಪಾಲುದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಅನ್ನು ಒದಗಿಸುತ್ತದೆ, ಅಲ್ಲಿ ನೀವು ಎಷ್ಟು ಜನರನ್ನು ಸೇರಿಸಿದ್ದೀರಿ, ಯಾರು ಪ್ರತಿದಿನ ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದಾರೆ ಮತ್ತು ಯಾರು ಇಲ್ಲ ಮತ್ತು ನೀವು ಎಷ್ಟು ಬೋನಸ್/ರಿಯಾಯಿತಿ ಗಳಿಸಿದ್ದೀರಿ ಎಂಬುದನ್ನು ನೋಡಬಹುದು.',
+        'dash_referred_list': 'ಉಲ್ಲೇಖಿತ ಡೈರಿಗಳು',
+        'dash_live_status': 'ದೈನಂದಿನ ಕೆಲಸದ ಸ್ಥಿತಿ',
+        'dash_reward': 'ಗಳಿಸಿದ ಬಹುಮಾನ',
+        'status_active': 'ಸಕ್ರಿಯ (ದೈನಂದಿನ ಸಂಗ್ರಹ)',
+        'status_inactive': 'ನಿಷ್ಕ್ರಿಯ (ಇಂದು ಯಾವುದೇ ಶಿಫ್ಟ್ ಇಲ್ಲ)',
+        'reward_active_desc': '₹500 ನಗದು ಪಾವತಿ + 2% ರಿಯಾಯಿತಿ ಅನ್ವಯಿಸಲಾಗಿದೆ',
+        'reward_inactive_desc': 'ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಶಿಫ್ಟ್‌ಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ',
+        'dash_metric_total_referred': 'ಒಟ್ಟು ಉಲ್ಲೇಖಿತ',
+        'dash_metric_active': 'ಸಕ್ರಿಯ ಡೈರಿಗಳು',
+        'dash_metric_cash_bonus': 'ಒಟ್ಟು ಗಳಿಸಿದ ನಗದು',
+        'dash_metric_discount': 'ಪ್ರಸ್ತುತ ರಿಯಾಯಿತಿ ದರ',
+        'faq_title': 'ಪದೇ ಪದೇ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
+        'q1': 'ನಗದು ಬೋನಸ್ ಅನ್ನು ಹೇಗೆ ಪಾವತಿಸಲಾಗುತ್ತದೆ?',
+        'a1': '₹500 ನಗದು ಬೋನಸ್ ಅನ್ನು ನಿಮ್ಮ ನೋಂದಾಯಿತ ಬ್ಯಾಂಕ್ ಖಾತೆ ಅಥವಾ UPI ವಿಳಾಸಕ್ಕೆ 24 ಗಂಟೆಗಳ ಒಳಗೆ ಜಮಾ ಮಾಡಲಾಗುತ್ತದೆ.',
+        'q2': 'ಚಂದಾದಾರಿಕೆ ರಿಯಾಯಿತಿಗೆ ಯಾವುದೇ ಮಿತಿ ಇದೆಯೇ?',
+        'a2': 'ಪ್ರತಿ ಸಕ್ರಿಯ ಉಲ್ಲೇಖಕ್ಕೆ ನೀವು 2% ರಿಯಾಯಿತಿಯನ್ನು ಗಳಿಸುತ್ತೀರಿ. ಪೂರ್ಣ 1 ವರ್ಷಕ್ಕೆ ನಿಮ್ಮ ಚಂದಾದಾರಿಕೆ ಶುಲ್ಕ ಅಥವಾ ವಾಲೆಟ್ ಸಂಗ್ರಹ ಶುಲ್ಕಗಳ ಮೇಲೆ ಗರಿಷ್ಠ 20% ವರೆಗೆ ರಿಯಾಯಿತಿಯನ್ನು ಪಡೆಯಬಹುದು.',
+        // 'q3': 'ನನ್ನ ಬಹುಮಾನಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಉಲ್ಲೇಖಿತ ಡೈರಿಗಳು ಪಾವತಿಸಬೇಕೇ?',
+        // 'a3': 'ಇಲ್ಲ! ಅವರು ಮೊದಲ ತಿಂಗಳ ಉಚಿತ ಪ್ರಯೋಗದ ಅಡಿಯಲ್ಲಿ ನೋಂದಾಯಿಸಿಕೊಳ್ಳಬಹುದು. ಅವರು ತಮ್ಮ ಉಚಿತ ಪ್ರಯೋಗದ ಸಮಯದಲ್ಲಿ ಸಕ್ರಿಯ ದೈನಂದಿನ ಶಿಫ್ಟ್‌ಗಳನ್ನು ದಾಖಲಿಸಲು ಪ್ರಾರಂಭಿಸಿದ ತಕ್ಷಣ ನಿಮ್ಮ ಬಹುಮಾನಗಳನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ.'
+      }
+    };
+
+    // Load navbar component dynamically
+    async function loadNavbar() {
+      try {
+        const response = await fetch('components/navbar.html');
+        const navbarHTML = await response.text();
+        document.getElementById('navbar-container').innerHTML = navbarHTML;
+        
+        // Setup language dropdown after navbar loads
+        initLanguageDropdown();
+        
+        // Apply saved language to elements
+        const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+        updateSalesLanguage(savedLang);
+      } catch (error) {
+        console.error('Error loading navbar:', error);
+      }
+    }
+
+    // Translate page elements
+    function updateSalesLanguage(lang) {
+      document.documentElement.lang = lang;
+      
+      const elements = document.querySelectorAll('[data-i18n]');
+      const dict = salesTranslations[lang] || salesTranslations['en'];
+      
+      elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (dict[key]) {
+          element.innerHTML = dict[key];
+        }
+      });
+      
+      // Update page title
+      if (dict['sales_page_title']) {
+        document.title = dict['sales_page_title'];
+      }
+      
+      // Update calculator text based on language
+      updateCalculatorText(lang);
+    }
+    
+    // Initialize language dropdown and toggle functionality
+    function initLanguageDropdown() {
+      const langToggleDesktop = document.getElementById('langToggleDesktop');
+      const langDropdownDesktop = document.getElementById('langDropdownDesktop');
+      const langOptions = document.querySelectorAll('[data-lang]');
+      const currentLangDisplayDesktop = document.getElementById('currentLangDesktop');
+
+      // Toggle desktop language dropdown
+      if (langToggleDesktop && langDropdownDesktop) {
+        langToggleDesktop.addEventListener('click', function (e) {
+          e.stopPropagation();
+          langDropdownDesktop.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('.desktop-language-selector')) {
+            langDropdownDesktop.classList.remove('show');
+          }
+        });
+      }
+
+      // Handle language selection
+      langOptions.forEach(option => {
+        option.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = this.getAttribute('data-lang');
+
+          // Update active class
+          langOptions.forEach(opt => opt.classList.remove('active'));
+          document.querySelectorAll(`[data-lang="${lang}"]`).forEach(opt => opt.classList.add('active'));
+
+          // Update display text
+          const langText = {
+            'en': 'English',
+            'hi': 'हिन्दी',
+            'pa': 'ਪੰਜਾਬੀ',
+            'kn': 'ಕನ್ನಡ'
+          };
+          if (currentLangDisplayDesktop) {
+            currentLangDisplayDesktop.textContent = langText[lang];
+          }
+
+          // Close dropdown
+          if (langDropdownDesktop) {
+            langDropdownDesktop.classList.remove('show');
+          }
+
+          // Save preference
+          localStorage.setItem('preferredLanguage', lang);
+
+          // Update local page language
+          updateSalesLanguage(lang);
+
+          // Dispatch custom event for language change (to translate navbar)
+          window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+        });
+      });
+
+      // Load saved language preference display
+      const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+      if (currentLangDisplayDesktop) {
+        const langText = {
+          'en': 'English',
+          'hi': 'हिन्दी',
+          'pa': 'ਪੰਜਾਬੀ',
+          'kn': 'ಕನ್ನಡ'
+        };
+        currentLangDisplayDesktop.textContent = langText[savedLang];
+      }
+
+      // Update active states
+      langOptions.forEach(opt => {
+        if (opt.getAttribute('data-lang') === savedLang) {
+          opt.classList.add('active');
+        } else {
+          opt.classList.remove('active');
+        }
+      });
+
+      // Initialize Mobile Menu Toggle
+      initMobileMenu();
+    }
+
+    // Initialize mobile menu toggle functionality
+    function initMobileMenu() {
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function () {
+          const isOpen = !mobileMenu.classList.contains('translate-x-full');
+
+          if (isOpen) {
+            // Close menu
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuToggle.classList.remove('active');
+            // Reset hamburger icon
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'rotate(0) translateY(0)';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'rotate(0) translateY(0)';
+          } else {
+            // Open menu
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenuToggle.classList.add('active');
+            // Transform to X
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'rotate(45deg) translateY(6px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translateY(-6px)';
+          }
+        });
+      }
+
+      // Close mobile menu when clicking on a nav link
+      mobileNavLinks.forEach(navLink => {
+        navLink.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+          mobileMenuToggle.classList.remove('active');
+          const spans = mobileMenuToggle.querySelectorAll('span');
+          spans[0].style.transform = 'rotate(0) translateY(0)';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'rotate(0) translateY(0)';
+        });
+      });
+    }
+
+    // Interactive Earnings Calculator Logic
+    const slider = document.getElementById('referralsSlider');
+    const countDisplay = document.getElementById('referredCount');
+    const cashDisplay = document.getElementById('cashReward');
+    const discountDisplay = document.getElementById('discountReward');
+
+    function calculateEarnings() {
+      const referrals = parseInt(slider.value) || 1;
+      
+      // Calculate cash bonus (₹500 per referral)
+      const cashReward = referrals * 500;
+      
+      // Calculate discount (2% per referral, max 20% discount)
+      const discountReward = Math.min(referrals * 2, 20);
+      
+      cashDisplay.textContent = cashReward.toLocaleString('en-IN');
+      discountDisplay.textContent = discountReward;
+    }
+
+    function updateCalculatorText(lang) {
+      const referrals = parseInt(slider.value) || 1;
+      
+      const labelText = {
+        'en': 'Dairies',
+        'hi': 'डेयरियां',
+        'pa': 'ਡੇਅਰੀਆਂ',
+        'kn': 'ಡೈರಿಗಳು'
+      };
+      
+      const unit = labelText[lang] || labelText['en'];
+      countDisplay.innerHTML = `${referrals} <span class="text-sm font-medium text-slate-500">${unit}</span>`;
+    }
+
+    slider.addEventListener('input', () => {
+      calculateEarnings();
+      const lang = localStorage.getItem('preferredLanguage') || 'hi';
+      updateCalculatorText(lang);
+    });
+
+    // Setup FAQ Accordion Toggles
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        // Close all active items
+        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+        // Open current item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNavbar();
+      calculateEarnings();
+    });
+  </script>
+</body>
+
+</html>

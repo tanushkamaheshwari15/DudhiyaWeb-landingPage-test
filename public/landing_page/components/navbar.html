@@ -1,0 +1,144 @@
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 bg-primary shadow-[0_20px_40px_rgba(0,20,83,0.06)]">
+  <div class="flex justify-between items-center w-full px-4 sm:px-10 lg:px-16 h-20 navbar-container">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center flex-shrink-0">
+      <img src="assets/Dudhiya-welcome.png" alt="Dudhiya Logo"
+        class="h-12 sm:h-15 md:h-18 lg:h-20 w-auto object-contain brightness-0 invert transition-all duration-300">
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-4 lg:gap-6 desktop-nav-links">
+      <a class="nav-link text-on-primary/90 font-semibold hover:text-on-primary hover:bg-on-primary/10 px-3 lg:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 text-base lg:text-lg"
+        href="index.html" data-i18n="nav_home">Home</a>
+      <a class="nav-link text-on-primary/90 font-semibold hover:text-on-primary hover:bg-on-primary/10 px-3 lg:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 text-base lg:text-lg"
+        href="index.html#features" data-i18n="nav_features">Features</a>
+      <!-- <a class="nav-link text-on-primary/90 font-semibold hover:text-on-primary hover:bg-on-primary/10 px-3 lg:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 text-base lg:text-lg"
+        href="index.html#benefits" data-i18n="nav_benefits">Benefits</a> -->
+      <a class="nav-link text-on-primary/90 font-semibold hover:text-on-primary hover:bg-on-primary/10 px-3 lg:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 text-base lg:text-lg"
+        href="index.html#download" data-i18n="nav_download">Download</a>
+      <a class="nav-link text-on-primary/90 font-semibold hover:text-on-primary hover:bg-on-primary/10 px-3 lg:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 text-base lg:text-lg"
+        href="about-dudhiya.html" data-i18n="nav_about">About</a>
+      <a class="nav-link text-on-primary/90 font-semibold hover:text-on-primary hover:bg-on-primary/10 px-3 lg:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 text-base lg:text-lg"
+        href="index.html#plans" data-i18n="nav_pricing">Pricing</a>
+      <a class="nav-link text-on-primary/90 font-semibold hover:text-on-primary hover:bg-on-primary/10 px-3 lg:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 text-base lg:text-lg"
+        href="index.html#contact" data-i18n="nav_contact">Contact</a>
+    </div>
+
+    <!-- Right Side Actions -->
+    <div class="flex items-center gap-2 sm:gap-3 navbar-actions">
+      <!-- Partner/Dealer Button (Desktop) -->
+      <a class="hidden md:inline-flex items-center justify-center nav-link nav-link-partner text-on-primary/90 font-bold hover:text-on-primary hover:bg-on-primary/10 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full transition-all duration-300 hover:scale-105 text-xs sm:text-sm whitespace-nowrap border border-on-primary/30 relative h-7 sm:h-9 leading-none"
+        href="partner-dealer.html" data-i18n="nav_partner">Partner/Dealer</a>
+
+      <!-- Language Selector (Desktop & Mobile) -->
+      <div class="relative desktop-language-selector language-selector">
+        <div id="langToggleDesktop"
+          class="flex items-center gap-1 sm:gap-2 cursor-pointer text-on-primary hover:text-on-primary font-semibold transition-all group border border-on-primary/30 rounded-full px-2 py-1 sm:px-3 sm:py-1 h-7 sm:h-9 leading-none">
+          <span
+            class="material-symbols-outlined group-hover:rotate-12 transition-transform text-xs sm:text-sm text-[#facc15] leading-none">language</span>
+          <span id="currentLangDesktop" class="text-[10px] sm:text-xs leading-none">हिन्दी</span>
+          <span class="material-symbols-outlined text-[10px] sm:text-xs opacity-50 leading-none">expand_more</span>
+        </div>
+        <div id="langDropdownDesktop" class="language-dropdown">
+          <a href="#" data-lang="en" class="mobile-language-item">English</a>
+          <a href="#" data-lang="hi" class="active mobile-language-item">हिन्दी</a>
+          <a href="#" data-lang="pa" class="mobile-language-item">ਪੰਜਾਬੀ</a>
+          <a href="#" data-lang="kn" class="mobile-language-item">ಕನ್ನಡ</a>
+        </div>
+      </div>
+
+      <!-- Login Button -->
+      <a href="/login"
+        class="bg-[#facc15] text-[#00288e] hover:bg-[#fde047] px-3 py-1 sm:px-4 sm:py-1.5 rounded-full font-bold text-xs sm:text-sm transition-all hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] active:scale-95 flex items-center gap-1 sm:gap-1.5 whitespace-nowrap h-7 sm:h-9 leading-none"
+        id="authBtn">
+        <span class="material-symbols-outlined text-sm sm:text-base leading-none">login</span>
+        <span data-i18n="nav_login" class="leading-none">Login</span>
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobileMenuToggle"
+        class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1 focus:outline-none z-50"
+        aria-label="Toggle menu">
+        <span class="w-5 h-[1.5px] bg-on-primary rounded-full transition-all duration-300 origin-center"></span>
+        <span class="w-5 h-[1.5px] bg-on-primary rounded-full transition-all duration-300"></span>
+        <span class="w-5 h-[1.5px] bg-on-primary rounded-full transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Overlay -->
+  <div id="mobileMenu"
+    class="md:hidden fixed inset-0 top-20 bg-primary z-40 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+    <div class="flex flex-col p-6 gap-3 min-h-full pb-20">
+      <!-- Mobile Nav Links -->
+      <a class="nav-link mobile-nav-link text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="index.html" data-i18n="nav_home">Home</a>
+      <a class="nav-link mobile-nav-link text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="index.html#features" data-i18n="nav_features">Features</a>
+      <!-- <a class="nav-link mobile-nav-link text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="index.html#benefits" data-i18n="nav_benefits">Benefits</a> -->
+      <a class="nav-link mobile-nav-link text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="index.html#download" data-i18n="nav_download">Download</a>
+      <a class="nav-link mobile-nav-link text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="about-dudhiya.html" data-i18n="nav_about">About</a>
+      <a class="nav-link mobile-nav-link text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="index.html#plans" data-i18n="nav_pricing">Pricing</a>
+      <a class="nav-link mobile-nav-link nav-link-partner text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="partner-dealer.html" data-i18n="nav_partner">Partner/Dealer</a>
+      <a class="nav-link mobile-nav-link text-on-primary/90 font-medium hover:text-on-primary hover:bg-on-primary/10 px-4 py-3 rounded-xl transition-all text-base"
+        href="index.html#contact" data-i18n="nav_contact">Contact</a>
+
+      <!-- Mobile Language Selector -->
+      <div class="border-t border-on-primary/20 pt-6 mt-4">
+        <p class="text-on-primary/60 text-sm mb-4 px-4 uppercase tracking-wider font-bold" data-i18n="select_language">
+          Select Language</p>
+        <div class="grid grid-cols-2 gap-3 px-4">
+          <button
+            class="lang-btn px-3 py-3.5 rounded-xl border border-on-primary/30 text-on-primary/80 text-sm hover:bg-on-primary/10 transition-all mobile-language-item flex items-center justify-center gap-2 font-medium"
+            data-lang="hi">
+            <span class="material-symbols-outlined text-base text-[#facc15]">language</span>
+            हिन्दी
+          </button>
+          <button
+            class="lang-btn px-3 py-3.5 rounded-xl border border-on-primary/30 text-on-primary/80 text-sm hover:bg-on-primary/10 transition-all mobile-language-item flex items-center justify-center gap-2 font-medium"
+            data-lang="en">
+            <span class="material-symbols-outlined text-base text-[#facc15]">language</span>
+            English
+          </button>
+          <button
+            class="lang-btn px-3 py-3.5 rounded-xl border border-on-primary/30 text-on-primary/80 text-sm hover:bg-on-primary/10 transition-all mobile-language-item flex items-center justify-center gap-2 font-medium"
+            data-lang="pa">
+            <span class="material-symbols-outlined text-base text-[#facc15]">language</span>
+            ਪੰਜਾਬੀ
+          </button>
+          <button
+            class="lang-btn px-3 py-3.5 rounded-xl border border-on-primary/30 text-on-primary/80 text-sm hover:bg-on-primary/10 transition-all mobile-language-item flex items-center justify-center gap-2 font-medium"
+            data-lang="kn">
+            <span class="material-symbols-outlined text-base text-[#facc15]">language</span>
+            ಕನ್ನಡ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" style="display:none;" onload="
+  if(localStorage.getItem('auth_token')) {
+    var btn = document.getElementById('authBtn');
+    if(btn) {
+      btn.href = '/dashboard';
+      var icon = btn.querySelector('.material-symbols-outlined');
+      if(icon) icon.textContent = 'dashboard';
+      var text = btn.querySelector('[data-i18n=\'nav_login\']');
+      if(text) {
+        text.setAttribute('data-i18n', 'nav_dashboard');
+        if(window.updateLanguage) {
+          window.updateLanguage(localStorage.getItem('preferredLanguage') || 'hi');
+        } else {
+          text.textContent = 'Dashboard';
+        }
+      }
+    }
+  }
+">

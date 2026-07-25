@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="pricing_page_title">Dudhiya - Plans & Pricing Comparison</title>
+  <link rel="icon" type="images/png" href="assets/Dudhiya-welcome.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"],
+            headline: ["Outfit", "sans-serif"],
+          },
+          colors: {
+            primary: "#00288e",
+            secondary: "#00714d",
+            surface: "#ffffff",
+            "surface-container": "#f5f5f5",
+            "surface-container-low": "#f0f4ff",
+            "on-surface": "#1a1a1a",
+            "on-surface-variant": "#666666",
+            "on-primary": "#ffffff",
+            outline: "#e0e0e0",
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="components/navbar.css">
+  <style>
+    .primary-gradient {
+      background: linear-gradient(135deg, #00288e 0%, #1e40af 100%);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .pricing-table th {
+      padding: 0.75rem 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .pricing-table td {
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      transition: all 0.2s ease;
+    }
+
+    .pricing-table tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    .pricing-table td:first-child,
+    .pricing-table th:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .glow-shadow-emerald {
+      box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.3);
+    }
+
+    .glow-shadow-primary {
+      box-shadow: 0 10px 30px -10px rgba(0, 40, 142, 0.3);
+    }
+
+    /* FAQ accordion styling */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-top: 0.5rem;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen font-sans antialiased">
+  <!-- Navbar Component Container -->
+  <div id="navbar-container"></div>
+
+  <!-- Header Hero Section -->
+  <section class="primary-gradient text-white pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_100%)]"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <span
+        class="inline-flex items-center gap-1.5 bg-white/10 text-yellow-300 px-3 py-1.5 rounded-full text-xs font-bold mb-4 border border-white/20">
+        <span class="material-symbols-outlined text-xs">payments</span>
+        <span data-i18n="pricing_hero_badge">100% Transparent Billing</span>
+      </span>
+      <h1 class="font-headline text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4"
+        data-i18n="pricing_hero_title">
+        Choose the Perfect Plan for Your Dairy
+      </h1>
+      <p class="text-blue-100 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed"
+        data-i18n="pricing_hero_subtitle">
+        Whether you prefer a flat rate subscription or pay-as-you-go wallet billing, we have you covered.
+      </p>
+    </div>
+  </section>
+
+  <!-- Detailed Plan Explanations -->
+  <section class="py-8 sm:py-12 px-4 max-w-7xl mx-auto w-full relative z-10 -mt-6 sm:-mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <!-- Card 1: Free Trial -->
+      <div
+        class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
+        <div>
+          <div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-slate-600 text-xl">card_giftcard</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight mb-1" data-i18n="plan_free_title">First Month FREE</h3>
+          <p class="text-xs text-slate-500 mb-4" data-i18n="pricing_free_desc">Try all premium features for a full month completely free.</p>
+          <div class="mb-5">
+            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900">₹0</span>
+            <span class="text-xs text-slate-400 font-semibold" data-i18n="plan_free_duration">/first month</span>
+          </div>
+          <ul class="space-y-2.5 mb-6">
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600 font-semibold" data-i18n="plan_feature_all">All Premium Features</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600" data-i18n="plan_feature_suppliers_unlimited">No Supplier Limits</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600" data-i18n="plan_feature_support">24/7 Support</span>
+            </li>
+          </ul>
+        </div>
+        <a href="/login"
+          class="w-full text-center py-2.5 sm:py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs sm:text-sm transition-all"
+          data-i18n="btn_start_free">Get started with free</a>
+      </div>
+
+      <!-- Card 2: Monthly Plan -->
+      <div
+        class="bg-white rounded-2xl p-5 sm:p-6 border-2 border-primary/20 shadow-md flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
+        <div
+          class="absolute top-3 right-3 bg-primary/10 text-primary text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider"
+          data-i18n="pricing_badge_popular">Popular</div>
+        <div>
+          <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-primary text-xl">calendar_month</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight mb-1" data-i18n="plan_monthly_title">Monthly Plan</h3>
+          <p class="text-xs text-slate-500 mb-4" data-i18n="plan_monthly_desc">Ideal for growing collection centers.</p>
+          <div class="mb-5">
+            <span class="text-2xl sm:text-3xl font-extrabold text-primary">₹499</span>
+            <span class="text-xs text-slate-400 font-semibold" data-i18n="plan_monthly_duration">/month</span>
+          </div>
+          <ul class="space-y-2.5 mb-6">
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600 font-semibold" data-i18n="plan_feature_suppliers_unlimited">Unlimited Suppliers</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600" data-i18n="plan_feature_wallet_recharge">Wallet Recharge Option</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600" data-i18n="plan_feature_reports">PDF Reports</span>
+            </li>
+          </ul>
+        </div>
+        <a href="/login"
+          class="w-full text-center py-2.5 sm:py-3 bg-primary hover:bg-blue-800 text-white font-bold rounded-xl text-xs sm:text-sm transition-all glow-shadow-primary"
+          data-i18n="btn_choose_plan">Start with this plan</a>
+      </div>
+
+      <!-- Card 3: Yearly Plan -->
+      <div
+        class="primary-gradient rounded-2xl p-5 sm:p-6 shadow-md flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 relative text-white">
+        <div
+          class="absolute top-3 right-3 bg-white/20 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider"
+          data-i18n="pricing_badge_value">Best Value</div>
+        <div>
+          <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-white text-xl">verified</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold tracking-tight mb-1" data-i18n="plan_yearly_title">Yearly Plan</h3>
+          <p class="text-xs text-blue-100 mb-4 font-medium" data-i18n="plan_yearly_desc">Complete dairy management for a full year with maximum savings.</p>
+          <div class="mb-2">
+            <span class="text-2xl sm:text-3xl font-extrabold">₹3999</span>
+            <span class="text-xs text-blue-200 font-medium" data-i18n="plan_yearly_duration">/year</span>
+          </div>
+          <p class="text-[9px] text-yellow-300 font-bold bg-white/10 py-1 px-2.5 rounded-full inline-block mb-5"
+            data-i18n="plan_feature_save">Save ₹1989 Yearly</p>
+          <ul class="space-y-2.5 mb-6">
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-yellow-300 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-blue-50 font-semibold" data-i18n="plan_feature_suppliers_unlimited">Unlimited Suppliers</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-yellow-300 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-blue-50" data-i18n="plan_feature_priority_support">Priority 24/7 Support</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-yellow-300 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-blue-50" data-i18n="plan_feature_reports">Comprehensive Reports</span>
+            </li>
+          </ul>
+        </div>
+        <a href="/login"
+          class="w-full text-center py-2.5 sm:py-3 bg-white text-primary hover:bg-slate-100 font-bold rounded-xl text-xs sm:text-sm transition-all"
+          data-i18n="btn_get_yearly">Start with this plan</a>
+      </div>
+
+      <!-- Card 4: Wallet Recharge -->
+      <div
+        class="bg-white rounded-2xl p-5 sm:p-6 border border-emerald-500/20 shadow-sm flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 relative">
+        <div
+          class="absolute top-3 right-3 bg-emerald-500/10 text-emerald-600 text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider"
+          data-i18n="pricing_badge_flexible">Flexible</div>
+        <div>
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-emerald-600 text-xl">account_balance_wallet</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight mb-1" data-i18n="plan_wallet_title">Wallet Recharge</h3>
+          <p class="text-xs text-slate-500 mb-4" data-i18n="pricing_wallet_desc_short">Pay per kg of milk collected. Recharge only when you need.</p>
+          <div class="mb-4">
+            <span class="text-2xl sm:text-3xl font-extrabold text-emerald-600">₹10</span>
+            <span class="text-xs text-slate-400 font-medium" data-i18n="plan_wallet_min_recharge">minimum recharge</span>
+          </div>
+          <p class="text-[10px] text-emerald-700 font-bold bg-emerald-50 py-1 px-2.5 rounded-full inline-block mb-5"
+            data-i18n="plan_wallet_rate_desc">₹0.0125 / kg collected</p>
+          <ul class="space-y-2.5 mb-6">
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600 font-semibold" data-i18n="plan_wallet_feature1">Unlimited Suppliers</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600" data-i18n="plan_wallet_feature2">Pay as you go (No fixed monthly fee)</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-lg font-bold">check</span>
+              <span class="text-xs sm:text-sm text-slate-600" data-i18n="plan_wallet_feature3">₹1.25 charge per 100 kg milk</span>
+            </li>
+          </ul>
+        </div>
+        <a href="/login"
+          class="w-full text-center py-2.5 sm:py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-all glow-shadow-emerald"
+          data-i18n="btn_start_wallet">Get started with wallet</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Plan Cost Estimator (Premium Utility) -->
+  <section class="py-8 sm:py-12 px-4 bg-blue-50/50 border-y border-blue-100">
+    <div class="max-w-4xl mx-auto w-full">
+      <div class="text-center mb-8">
+        <h2 class="font-headline text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-2" data-i18n="calc_title">Plan Recommendation Calculator</h2>
+        <p class="text-slate-500 text-xs sm:text-sm max-w-xl mx-auto" data-i18n="calc_subtitle">Input your monthly milk volume to see whether a flat-rate subscription or the pay-as-you-go wallet is cheaper.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 sm:p-8 shadow-sm border border-slate-200">
+        <div class="space-y-5">
+          <!-- Input fields -->
+          <div>
+            <label class="block text-xs sm:text-sm font-bold text-slate-700 mb-2" data-i18n="calc_label_milk">Estimated Monthly Milk Volume (in Kilograms)</label>
+            <div class="relative rounded-xl shadow-sm">
+              <input type="number" id="calcMilkInput" value="15000" min="0" step="500"
+                class="w-full pl-4 pr-12 py-2.5 sm:py-3 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold text-slate-900 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+              <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                <span class="text-slate-400 font-bold text-xs">KG / Month</span>
+              </div>
+            </div>
+            <!-- Slider -->
+            <input type="range" id="calcMilkSlider" min="1000" max="100000" step="1000" value="15000"
+              class="w-full mt-3 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary">
+          </div>
+
+          <!-- Comparison output boxes -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <!-- Monthly subscription estimate -->
+            <div class="bg-blue-50/50 p-4 sm:p-5 rounded-xl border border-blue-100 text-center">
+              <span class="text-[10px] sm:text-xs font-semibold text-blue-600 uppercase tracking-wider" data-i18n="plan_monthly_title">Monthly Plan</span>
+              <div class="text-xl sm:text-2xl font-extrabold text-primary mt-1">₹499</div>
+              <span class="text-[10px] text-slate-400 font-medium" data-i18n="calc_sub_flat_cost">Flat subscription fee</span>
+            </div>
+
+            <!-- Wallet usage estimate -->
+            <div class="bg-emerald-50/30 p-4 sm:p-5 rounded-xl border border-emerald-100 text-center">
+              <span class="text-[10px] sm:text-xs font-semibold text-emerald-700 uppercase tracking-wider" data-i18n="plan_wallet_title">Wallet Recharge</span>
+              <div class="text-xl sm:text-2xl font-extrabold text-emerald-600 mt-1">₹<span id="calcWalletCost">187.50</span></div>
+              <span class="text-[10px] text-slate-400 font-medium" data-i18n="calc_sub_usage_cost">Charged at ₹0.0125 / kg</span>
+            </div>
+          </div>
+
+          <!-- Final Recommendation Banner -->
+          <div id="calcRecommendationBanner" class="p-4 rounded-xl text-center font-bold text-xs sm:text-sm transition-all duration-300 mt-2 flex items-center justify-center gap-2.5">
+            <span class="material-symbols-outlined text-xl" id="calcRecIcon">info</span>
+            <span id="calcRecText" data-i18n="calc_wallet_better">Wallet Recharge is most economical for you!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Feature Comparison Table Section -->
+  <section id="compare-features" class="py-8 sm:py-12 px-4 max-w-7xl mx-auto w-full">
+    <div class="text-center mb-8">
+      <h2 class="font-headline text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-2"
+        data-i18n="pricing_compare_title">Detailed Feature Comparison</h2>
+      <p class="text-slate-500 text-xs sm:text-sm max-w-xl mx-auto" data-i18n="pricing_compare_subtitle">Compare all
+        plans side-by-side to find the right fit for your dairy business.</p>
+    </div>
+
+    <div class="overflow-x-auto bg-white rounded-2xl shadow-sm border border-slate-200">
+      <table class="pricing-table w-full border-collapse min-w-[800px]">
+        <thead>
+          <tr class="bg-slate-50/70 text-slate-700 text-xs sm:text-sm font-semibold border-b border-slate-200">
+            <th class="w-1/4" data-i18n="pricing_table_header_features">Features</th>
+            <th class="w-1/5" data-i18n="plan_free_title">First Month FREE</th>
+            <th class="w-1/5 text-primary" data-i18n="plan_monthly_title">Monthly Plan</th>
+            <th class="w-1/5 text-primary" data-i18n="plan_yearly_title">Yearly Plan</th>
+            <th class="w-1/5 text-emerald-600" data-i18n="plan_wallet_title">Wallet Recharge</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-600 text-xs sm:text-sm">
+          <!-- Row 1: Cost -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="pricing_row_cost">Subscription Cost</td>
+            <td class="font-bold text-slate-950">₹0</td>
+            <td class="font-bold text-primary">₹499 <span class="text-[9px] text-slate-400 font-normal">/month</span>
+            </td>
+            <td class="font-bold text-primary">₹3999 <span class="text-[9px] text-slate-400 font-normal">/year</span>
+            </td>
+            <td class="font-bold text-emerald-600">₹0.0125 <span class="text-[9px] text-slate-400 font-normal">/kg
+                collected</span></td>
+          </tr>
+          <!-- Row 2: Supplier Limit -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="plan_feature_suppliers_unlimited">Unlimited Suppliers
+            </td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+          </tr>
+          <!-- Row 3: Minimum Deposit -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="pricing_row_min_deposit">Minimum Deposit/Setup</td>
+            <td class="text-slate-400">—</td>
+            <td class="text-slate-400">—</td>
+            <td class="text-slate-400">—</td>
+            <td class="font-bold text-emerald-600">₹10</td>
+          </tr>
+          <!-- Row 4: Pay As You Go -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="pricing_row_pay_as_you_go">Pay As You Go (Per KG)</td>
+            <td class="text-slate-400">—</td>
+            <td class="text-slate-400">—</td>
+            <td class="text-slate-400">—</td>
+            <td class="font-bold text-emerald-600">₹1.25 <span class="text-[9px] text-slate-400 font-normal">per 100 kg
+                milk</span></td>
+          </tr>
+          <!-- Row 5: Wallet Recharge Option -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="plan_feature_wallet_recharge">Wallet Recharge</td>
+            <td class="text-slate-400">—</td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+          </tr>
+          <!-- Row 6: PDF/Excel Reports -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="pricing_row_reports">Detailed PDF & Excel Reports</td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+          </tr>
+          <!-- Row 7: Cloud Storage & Backup -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="pricing_row_backup">Automatic Cloud Backups</td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+          </tr>
+          <!-- Row 8: Shift Management -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="pricing_row_shift">Shift Management (Morning/Evening)
+            </td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+            <td><span class="material-symbols-outlined text-green-500 font-bold text-lg">check</span></td>
+          </tr>
+          <!-- Row 9: Customer Support -->
+          <tr class="border-b border-slate-100">
+            <td class="font-semibold text-slate-900" data-i18n="pricing_row_support">Customer Support</td>
+            <td data-i18n="plan_feature_support">24/7 Support</td>
+            <td data-i18n="plan_feature_support">24/7 Support</td>
+            <td class="font-bold text-slate-900" data-i18n="plan_feature_priority_support">Priority 24/7 Support</td>
+            <td data-i18n="plan_feature_support">24/7 Support</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Interactive Premium FAQ Accordion Section -->
+  <section class="bg-blue-50/50 py-10 sm:py-16 px-4 w-full border-t border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <h3 class="font-headline text-xl sm:text-2xl font-bold text-slate-900 mb-8 text-center" data-i18n="pricing_info_title">
+        Frequently Asked Questions</h3>
+      
+      <div class="space-y-3">
+        <!-- FAQ 1 -->
+        <div class="faq-item bg-white rounded-xl border border-slate-200/80 shadow-sm p-4 sm:p-5 cursor-pointer select-none transition-all hover:border-primary/20">
+          <div class="flex items-center justify-between gap-4">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900" data-i18n="pricing_q1">Can I switch plans anytime?</h4>
+            <span class="material-symbols-outlined text-slate-400 faq-icon transition-transform duration-300 text-lg">expand_more</span>
+          </div>
+          <div class="faq-answer text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p data-i18n="pricing_a1">Yes! You can upgrade from Free Trial to Monthly, Yearly or Wallet Recharge at any time directly through your dashboard settings.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item bg-white rounded-xl border border-slate-200/80 shadow-sm p-4 sm:p-5 cursor-pointer select-none transition-all hover:border-primary/20">
+          <div class="flex items-center justify-between gap-4">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900" data-i18n="pricing_q2">How does the Wallet Recharge plan charge me?</h4>
+            <span class="material-symbols-outlined text-slate-400 faq-icon transition-transform duration-300 text-lg">expand_more</span>
+          </div>
+          <div class="faq-answer text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p data-i18n="pricing_a2">In the Wallet plan, there are no fixed monthly costs. You only pay ₹0.0125 per kg of milk collected. For example, if you collect 100 kg of milk, only ₹1.25 is deducted from your wallet balance. You can recharge with as low as ₹10 to keep using the services.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item bg-white rounded-xl border border-slate-200/80 shadow-sm p-4 sm:p-5 cursor-pointer select-none transition-all hover:border-primary/20">
+          <div class="flex items-center justify-between gap-4">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900" data-i18n="pricing_q3">Does my wallet balance expire?</h4>
+            <span class="material-symbols-outlined text-slate-400 faq-icon transition-transform duration-300 text-lg">expand_more</span>
+          </div>
+          <div class="faq-answer text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p data-i18n="pricing_a3">No! Your wallet balance has lifetime validity and will never expire, even if your collection center remains closed during seasonal off-times.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component Container -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Load navbar component dynamically
+    async function loadNavbar() {
+      try {
+        const response = await fetch('components/navbar.html');
+        const navbarHTML = await response.text();
+        document.getElementById('navbar-container').innerHTML = navbarHTML;
+        
+        // Setup language dropdown after navbar loads
+        initLanguageDropdown();
+        
+        // Apply saved language to elements
+        const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+        if (typeof updateLanguage === 'function') {
+          updateLanguage(savedLang);
+        }
+      } catch (error) {
+        console.error('Error loading navbar:', error);
+      }
+    }
+    
+    // Initialize language dropdown and toggle functionality
+    function initLanguageDropdown() {
+      const langToggleDesktop = document.getElementById('langToggleDesktop');
+      const langDropdownDesktop = document.getElementById('langDropdownDesktop');
+      const langOptions = document.querySelectorAll('[data-lang]');
+      const currentLangDisplayDesktop = document.getElementById('currentLangDesktop');
+
+      // Toggle desktop language dropdown
+      if (langToggleDesktop && langDropdownDesktop) {
+        langToggleDesktop.addEventListener('click', function (e) {
+          e.stopPropagation();
+          langDropdownDesktop.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('.desktop-language-selector')) {
+            langDropdownDesktop.classList.remove('show');
+          }
+        });
+      }
+
+      // Handle language selection
+      langOptions.forEach(option => {
+        option.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = this.getAttribute('data-lang');
+
+          // Update active class
+          langOptions.forEach(opt => opt.classList.remove('active'));
+          document.querySelectorAll(`[data-lang="${lang}"]`).forEach(opt => opt.classList.add('active'));
+
+          // Update display text
+          const langText = {
+            'en': 'English',
+            'hi': 'हिन्दी',
+            'pa': 'ਪੰਜਾਬੀ',
+            'kn': 'ಕನ್ನಡ'
+          };
+          if (currentLangDisplayDesktop) {
+            currentLangDisplayDesktop.textContent = langText[lang];
+          }
+
+          // Close dropdown
+          if (langDropdownDesktop) {
+            langDropdownDesktop.classList.remove('show');
+          }
+
+          // Save preference
+          localStorage.setItem('preferredLanguage', lang);
+
+          // Update all translations including navbar
+          if (typeof updateLanguage === 'function') {
+            updateLanguage(lang);
+          }
+
+          // Dispatch custom event for language change
+          window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+          
+          // Recalculate recommendation with new language
+          updateRecText(lang);
+        });
+      });
+
+      // Load saved language preference display
+      const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+      if (currentLangDisplayDesktop) {
+        const langText = {
+          'en': 'English',
+          'hi': 'हिन्दी',
+          'pa': 'ਪੰਜਾਬੀ',
+          'kn': 'ಕನ್ನಡ'
+        };
+        currentLangDisplayDesktop.textContent = langText[savedLang];
+      }
+
+      // Update active states
+      langOptions.forEach(opt => {
+        if (opt.getAttribute('data-lang') === savedLang) {
+          opt.classList.add('active');
+        } else {
+          opt.classList.remove('active');
+        }
+      });
+
+      // Initialize Mobile Menu Toggle
+      initMobileMenu();
+    }
+
+    // Initialize mobile menu toggle functionality
+    function initMobileMenu() {
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function () {
+          const isOpen = !mobileMenu.classList.contains('translate-x-full');
+
+          if (isOpen) {
+            // Close menu
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuToggle.classList.remove('active');
+            // Reset hamburger icon
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'rotate(0) translateY(0)';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'rotate(0) translateY(0)';
+          } else {
+            // Open menu
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenuToggle.classList.add('active');
+            // Transform to X
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'rotate(45deg) translateY(6px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translateY(-6px)';
+          }
+        });
+      }
+
+      // Close mobile menu when clicking on a nav link
+      mobileNavLinks.forEach(navLink => {
+        navLink.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+          mobileMenuToggle.classList.remove('active');
+          const spans = mobileMenuToggle.querySelectorAll('span');
+          spans[0].style.transform = 'rotate(0) translateY(0)';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'rotate(0) translateY(0)';
+        });
+      });
+    }
+
+    // Interactive Calculator Logic
+    const milkInput = document.getElementById('calcMilkInput');
+    const milkSlider = document.getElementById('calcMilkSlider');
+    const walletCostDisplay = document.getElementById('calcWalletCost');
+    const recommendationBanner = document.getElementById('calcRecommendationBanner');
+    const recText = document.getElementById('calcRecText');
+    const recIcon = document.getElementById('calcRecIcon');
+
+    function calculateCosts() {
+      const kg = parseFloat(milkInput.value) || 0;
+      const walletCost = kg * 0.0125;
+      walletCostDisplay.textContent = walletCost.toFixed(2);
+      
+      const lang = localStorage.getItem('preferredLanguage') || 'hi';
+      updateRecText(lang, walletCost);
+    }
+
+    function updateRecText(lang, walletCost) {
+      if (walletCost === undefined) {
+        const kg = parseFloat(milkInput.value) || 0;
+        walletCost = kg * 0.0125;
+      }
+      
+      const isWalletCheaper = walletCost < 499;
+
+      const translations = {
+        'en': {
+          'wallet_better': 'Wallet Recharge is most economical for you!',
+          'monthly_better': 'Monthly Plan is most economical for you!',
+        },
+        'hi': {
+          'wallet_better': 'आपके लिए वॉलेट रिचार्ज सबसे सस्ता और बढ़िया है!',
+          'monthly_better': 'आपके लिए मासिक प्लान सबसे सस्ता और बढ़िया है!',
+        },
+        'pa': {
+          'wallet_better': 'ਤੁਹਾਡੇ ਲਈ ਵਾਲਿਟ ਰੀਚਾਰਜ ਸਭ ਤੋਂ ਸਸਤਾ ਅਤੇ ਵਧੀਆ ਹੈ!',
+          'monthly_better': 'ਤੁਹਾਡੇ ਲਈ ਮਾਸਿਕ ਪਲਾਨ ਸਭ ਤੋਂ ਸਸਤਾ ਅਤੇ ਵਧੀਆ ਹੈ!',
+        },
+        'kn': {
+          'wallet_better': 'ನಿಮಗೆ ವಾಲೆಟ್ ರೀಚಾರ್ಜ್ ಅತ್ಯಂತ ಆರ್ಥಿಕ ಮತ್ತು ಲಾಭದಾಯಕವಾಗಿದೆ!',
+          'monthly_better': 'ನಿಮಗೆ ಮಾಸಿಕ ಯೋಜನೆ ಅತ್ಯಂತ ಆರ್ಥಿಕ ಮತ್ತು ಲಾಭದಾಯಕವಾಗಿದೆ!',
+        }
+      };
+
+      const selectedTexts = translations[lang] || translations['en'];
+
+      if (isWalletCheaper) {
+        recText.textContent = selectedTexts['wallet_better'];
+        recommendationBanner.className = "p-6 rounded-2xl text-center font-bold text-base transition-all duration-300 mt-4 flex items-center justify-center gap-3 bg-emerald-50 text-emerald-800 border border-emerald-100";
+        recIcon.textContent = "recommend";
+        recIcon.className = "material-symbols-outlined text-2xl text-emerald-600";
+      } else {
+        recText.textContent = selectedTexts['monthly_better'];
+        recommendationBanner.className = "p-6 rounded-2xl text-center font-bold text-base transition-all duration-300 mt-4 flex items-center justify-center gap-3 bg-blue-50 text-blue-800 border border-blue-100";
+        recIcon.textContent = "recommend";
+        recIcon.className = "material-symbols-outlined text-2xl text-primary";
+      }
+    }
+
+    milkInput.addEventListener('input', () => {
+      milkSlider.value = milkInput.value;
+      calculateCosts();
+    });
+
+    milkSlider.addEventListener('input', () => {
+      milkInput.value = milkSlider.value;
+      calculateCosts();
+    });
+
+    // Setup FAQ Accordion Toggles
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        // Close all active items
+        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+        // Open current item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNavbar();
+      calculateCosts();
+    });
+  </script>
+</body>
+
+</html>

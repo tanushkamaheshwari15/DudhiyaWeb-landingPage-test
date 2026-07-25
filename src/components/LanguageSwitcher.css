@@ -1,0 +1,151 @@
+.language-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 110px;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lang-icon {
+  font-size: 14px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.lang-text {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  color: white;
+  margin-left: 4px;
+}
+
+.lang-chevron {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.lang-chevron.open {
+  transform: rotate(180deg);
+}
+
+.lang-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 180px;
+  overflow: hidden;
+}
+
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: left;
+  color: #333;
+  font-size: 13px;
+}
+
+.lang-item:hover {
+  background-color: #f5f5f5;
+}
+
+.lang-item.active {
+  background-color: #e3f2fd;
+  color: #2563eb;
+}
+
+.language-option.active .language-native {
+  font-weight: 600;
+}
+
+.language-native {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.language-english {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+.language-option.active .language-native,
+.language-option.active .language-english {
+  color: #1976d2;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .lang-btn {
+    min-width: 78px;
+    padding: 6px 8px;
+    gap: 4px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+
+  .lang-icon {
+    font-size: 13px;
+  }
+
+  .lang-text {
+    font-size: 12px;
+  }
+
+  .lang-chevron {
+    font-size: 9px;
+  }
+
+  .language-dropdown {
+    min-width: 160px;
+    right: -10px;
+  }
+
+  .language-option {
+    padding: 10px 14px;
+  }
+
+  .language-native {
+    font-size: 13px;
+  }
+
+  .language-english {
+    font-size: 11px;
+  }
+}

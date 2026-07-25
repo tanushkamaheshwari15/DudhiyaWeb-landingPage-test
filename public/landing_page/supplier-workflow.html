@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page_title">Supplier Workflow - Dudhiya Milk Collection App</title>
+  <link rel="icon" type="images/png" href="assets/Dudhiya-welcome.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00288e',
+            'primary-hover': '#001f6e',
+            secondary: '#00714d',
+            'secondary-hover': '#005a3d',
+            tertiary: '#ff6b00',
+            'tertiary-hover': '#e65a00',
+            surface: '#ffffff',
+            'surface-container': '#f5f5f5',
+            'surface-container-low': '#f0f4ff',
+            'surface-container-lowest': '#ffffff',
+            'on-surface': '#1a1a1a',
+            'on-surface-variant': '#666666',
+            'on-primary': '#ffffff',
+            'on-secondary': '#ffffff',
+            'on-tertiary': '#ffffff',
+            outline: '#e0e0e0',
+            'outline-variant': '#bdbdbd',
+            error: '#d32f2f',
+            'error-container': '#ffdad6',
+            'on-error': '#ffffff',
+            'on-error-container': '#410002',
+          },
+          fontFamily: {
+            body: ['Inter', 'sans-serif'],
+            headline: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .primary-gradient {
+      background: linear-gradient(135deg, #00288e 0%, #0033a3 100%);
+    }
+
+    .secondary-gradient {
+      background: linear-gradient(135deg, #00714d 0%, #008c60 100%);
+    }
+
+    /* Scroll Animation Classes */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Float Animation */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .float-animation {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Pulse Glow Animation */
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 40, 142, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 15px rgba(0, 40, 142, 0);
+      }
+    }
+
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    /* Gradient Background Animation */
+    @keyframes gradient-shift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .animated-gradient {
+      background-size: 200% 200%;
+      animation: gradient-shift 8s ease infinite;
+    }
+
+    /* Step Badge Animation */
+    @keyframes badge-pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .step-badge {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-badge::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, #00288e, #00714d, #ff6b00, #00288e);
+      background-size: 300% 300%;
+      border-radius: 50%;
+      z-index: -1;
+      animation: gradient-shift 3s linear infinite;
+      opacity: 0.3;
+    }
+
+    /* Feature Card Hover Effects */
+    .feature-card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .feature-card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Image Container Hover */
+    .image-container {
+      transition: all 0.4s ease;
+    }
+
+    .image-container:hover {
+      transform: scale(1.02);
+    }
+
+    .image-container img {
+      transition: all 0.4s ease;
+    }
+
+    .image-container:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Stagger delay classes */
+    .delay-100 {
+      transition-delay: 100ms;
+    }
+
+    .delay-200 {
+      transition-delay: 200ms;
+    }
+
+    .delay-300 {
+      transition-delay: 300ms;
+    }
+
+    .delay-400 {
+      transition-delay: 400ms;
+    }
+
+    .delay-500 {
+      transition-delay: 500ms;
+    }
+
+    /* First Month Free Badge Animation */
+    @keyframes sparkle {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      25% {
+        transform: scale(1.05) rotate(-2deg);
+      }
+
+      50% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      75% {
+        transform: scale(1.05) rotate(2deg);
+      }
+    }
+
+    .free-badge {
+      animation: sparkle 2s ease-in-out infinite;
+      background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 50%, #ff6b00 100%);
+      background-size: 200% 200%;
+      animation: sparkle 2s ease-in-out infinite, gradient-shift 3s ease infinite;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00714d;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #005a3d;
+    }
+
+    /* Mobile Responsive Improvements */
+    @media (max-width: 640px) {
+      .float-animation {
+        animation-duration: 4s !important;
+      }
+
+      .step-badge {
+        width: 48px !important;
+        height: 48px !important;
+      }
+
+      .step-badge .material-symbols-outlined {
+        font-size: 24px !important;
+      }
+
+      .float-animation {
+        transform: none !important;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .feature-card-hover {
+        padding: 0.75rem !important;
+      }
+
+      .absolute.-bottom-4,
+      .absolute.-top-4,
+      .absolute.-left-4,
+      .absolute.-right-4 {
+        position: relative !important;
+        bottom: auto !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        margin-top: 1rem;
+        max-width: none !important;
+      }
+    }
+
+    /* Mobile menu styles */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* Ensure proper touch targets on mobile */
+    @media (max-width: 768px) {
+
+      a,
+      button {
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      .material-symbols-outlined {
+        font-size: 20px;
+      }
+    }
+
+    /* Prevent text overflow */
+    h1,
+    h2,
+    h3,
+    h4 {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Ensure proper image sizing */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface">
+  <!-- Navbar Component -->
+  <link rel="stylesheet" href="components/navbar.css">
+  <div id="navbar-container"></div>
+
+  <!-- Hero Section -->
+  <section class="pt-28 sm:pt-32 md:pt-40 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-secondary/5 rounded-full blur-3xl float-animation"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl float-animation"
+        style="animation-delay: 2s;"></div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/3 rounded-full blur-3xl">
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="text-center mb-6 sm:mb-12">
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <span
+            class="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-secondary text-on-secondary px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold fade-in-up">
+            <span class="material-symbols-outlined text-base sm:text-lg">agriculture</span>
+            <span data-i18n="for_suppliers_badge">For Suppliers (Farmers)</span>
+          </span>
+          <span
+            class="inline-flex items-center justify-center gap-1.5 sm:gap-2 free-badge text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold fade-in-up shadow-lg">
+            <span class="material-symbols-outlined text-base sm:text-lg">card_giftcard</span>
+            <span data-i18n="first_month_free_badge"></span>
+          </span>
+        </div>
+        <h1
+          class="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-on-surface mb-4 sm:mb-6 leading-[1.15] fade-in-up delay-100">
+          <span data-i18n="complete_supplier_title">Complete Supplier</span> <span class="text-secondary"
+            style="color: #00714d;" data-i18n="workflow_guide_title">Workflow Guide</span>
+        </h1>
+        <p
+          class="text-base sm:text-lg md:text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed fade-in-up delay-200">
+          <span data-i18n="workflow_guide_subtitle">Learn how Dudhiya helps farmers connect with dairies, view their
+            milk collections, and track earnings - all in one simple app!</span>
+        </p>
+      </div>
+
+      <!-- Quick Feature Preview Cards -->
+      <div class="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-4 max-w-4xl mx-auto mb-8 sm:mb-12 fade-in-up delay-300">
+        <div class="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg border border-outline/30 text-center">
+          <div
+            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-2">
+            <span class="material-symbols-outlined text-xl sm:text-2xl">hub</span>
+          </div>
+          <p class="font-semibold text-xs sm:text-sm" data-i18n="connect_dairies_feature">Connect Dairies</p>
+        </div>
+        <div class="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg border border-outline/30 text-center">
+          <div
+            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mx-auto mb-2">
+            <span class="material-symbols-outlined text-xl sm:text-2xl">visibility</span>
+          </div>
+          <p class="font-semibold text-xs sm:text-sm" data-i18n="view_collections_feature">View Collections</p>
+        </div>
+        <div class="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg border border-outline/30 text-center">
+          <div
+            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center mx-auto mb-2">
+            <span class="material-symbols-outlined text-xl sm:text-2xl">account_balance_wallet</span>
+          </div>
+          <p class="font-semibold text-xs sm:text-sm" data-i18n="track_earnings_feature">Track Earnings</p>
+        </div>
+      </div>
+
+      <!-- Download CTA -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in-up delay-400">
+        <a href="https://play.google.com/store/apps/details?id=com.elusifataehyung.MilkManagementApp&pcampaignid=web_share"
+          target="_blank"
+          class="secondary-gradient text-on-secondary px-6 sm:px-8 py-4 rounded-full font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2 pulse-glow whitespace-nowrap">
+          <img src="/playstore.png" alt="Download App" class="w-5 h-5 sm:w-6 sm:h-6">
+          <span class="whitespace-nowrap" data-i18n="download_mobile_app">Download Mobile App</span>
+        </a>
+        <a href="/login"
+          class="bg-white text-secondary px-6 sm:px-8 py-4 rounded-full font-bold text-base sm:text-lg border-2 border-secondary hover:bg-surface-container transition-all hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap">
+          <img src="assets/web-app-icon.png" alt="Use Web App" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
+          <span class="whitespace-nowrap" data-i18n="use_web_app">Use Web App</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 1: See Connected Dairies -->
+  <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-surface-container-low relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl float-animation"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div class="fade-in-left">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg step-badge">
+              <span class="material-symbols-outlined text-3xl relative z-10">hub</span>
+            </div>
+            <div>
+              <span class="text-sm font-semibold text-primary">Step 1</span>
+              <h2 class="font-headline text-2xl sm:text-3xl font-bold text-on-surface" data-i18n="step1_title">Connect
+                With Dairies</h2>
+            </div>
+          </div>
+          <p class="text-lg text-on-surface-variant mb-6 leading-relaxed" data-i18n="step1_description">
+            Connect with multiple collection centers to track all your milk delivery details and payments in one place.
+          </p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-primary/5">
+              <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step1_feature1_title">Multiple Dairies</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-primary/5">
+              <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step1_feature2_title">Dairy Details</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-primary/5">
+              <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step1_feature3_title">Request Status</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-primary/5">
+              <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step1_feature4_title">Easy Connection</span>
+            </li>
+          </ul>
+          <a href="https://play.google.com/store/apps/details?id=com.elusifataehyung.MilkManagementApp&pcampaignid=web_share"
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-hover transition-all hover:scale-105 shadow-lg hover:shadow-xl">
+            <span data-i18n="try_this_feature">Try This Feature</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="relative fade-in-right mt-8 lg:mt-0">
+          <div class="image-container bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 feature-card-hover">
+            <img src="assets/farmer-managent.png" alt="Connected Dairies Interface" class="w-full rounded-lg">
+          </div>
+          <!-- Floating Info Card -->
+          <div
+            class="hidden sm:block absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-4 max-w-[200px] float-animation">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">link</span>
+              <span class="text-sm font-semibold" data-i18n="connect_multiple_dairies_info">Connect Multiple
+                Dairies</span>
+            </div>
+          </div>
+          <!-- Mobile Info Card -->
+          <div class="sm:hidden mt-4 bg-white rounded-xl shadow-lg p-4 float-animation">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">link</span>
+              <span class="text-sm font-semibold" data-i18n="connect_multiple_dairies_info">Connect Multiple
+                Dairies</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 2: View Collections -->
+  <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-surface relative overflow-hidden">
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl float-animation"
+      style="animation-delay: 1s;"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div class="order-2 lg:order-1 relative fade-in-left mt-8 lg:mt-0">
+          <div class="image-container bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 feature-card-hover">
+            <img src="assets/collection-entry.png" alt="View Collections Interface" class="w-full rounded-lg">
+          </div>
+          <!-- Floating Info Card -->
+          <div
+            class="hidden sm:block absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-4 max-w-[220px] float-animation">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary">visibility</span>
+              <span class="text-sm font-semibold">View Only Access</span>
+            </div>
+          </div>
+          <!-- Mobile Info Card -->
+          <div class="sm:hidden mt-4 bg-white rounded-xl shadow-lg p-4 float-animation">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary">visibility</span>
+              <span class="text-sm font-semibold">View Only Access</span>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 fade-in-right">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-16 h-16 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-lg step-badge">
+              <span class="material-symbols-outlined text-3xl relative z-10">visibility</span>
+            </div>
+            <div>
+              <span class="text-sm font-semibold text-secondary">Step 2</span>
+              <h2 class="font-headline text-2xl sm:text-3xl font-bold text-on-surface" data-i18n="step2_title">View Your
+                Collections</h2>
+            </div>
+          </div>
+          <p class="text-lg text-on-surface-variant mb-6 leading-relaxed" data-i18n="step2_description">
+            Monitor your milk collection history with complete transparency—only buyers can record deliveries.
+          </p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-secondary/5">
+              <span class="material-symbols-outlined text-secondary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step2_feature1_title">View Access</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-secondary/5">
+              <span class="material-symbols-outlined text-secondary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step2_feature2_title">Detailed Info</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-secondary/5">
+              <span class="material-symbols-outlined text-secondary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step2_feature3_title">Smart Filters</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-secondary/5">
+              <span class="material-symbols-outlined text-secondary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step2_feature4_title">Payment Tracking</span>
+            </li>
+          </ul>
+          <a href="https://play.google.com/store/apps/details?id=com.elusifataehyung.MilkManagementApp&pcampaignid=web_share"
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-6 py-3 rounded-lg font-semibold hover:bg-secondary-hover transition-all hover:scale-105 shadow-lg hover:shadow-xl">
+            <span data-i18n="try_this_feature">Try This Feature</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 3: View Reports & Earnings -->
+  <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-surface-container-low relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-tertiary/5 rounded-full blur-3xl float-animation"
+      style="animation-delay: 2s;"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div class="fade-in-left">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-16 h-16 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-lg step-badge">
+              <span class="material-symbols-outlined text-3xl relative z-10">account_balance_wallet</span>
+            </div>
+            <div>
+              <span class="text-sm font-semibold text-tertiary">Step 3</span>
+              <h2 class="font-headline text-2xl sm:text-3xl font-bold text-on-surface" data-i18n="step3_title">Track
+                Earnings & Reports</h2>
+            </div>
+          </div>
+          <p class="text-lg text-on-surface-variant mb-6 leading-relaxed" data-i18n="step3_description">
+            View your total earnings and download reports shared by collection centers instantly.
+          </p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-tertiary/5">
+              <span class="material-symbols-outlined text-tertiary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step3_feature1_title">Shared Reports</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-tertiary/5">
+              <span class="material-symbols-outlined text-tertiary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step3_feature2_title">Earnings View</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-tertiary/5">
+              <span class="material-symbols-outlined text-tertiary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step3_feature3_title">Payment History</span>
+            </li>
+            <li class="flex items-center gap-3 p-2 rounded-lg bg-tertiary/5">
+              <span class="material-symbols-outlined text-tertiary text-xl">check_circle</span>
+              <span class="font-semibold text-on-surface text-sm" data-i18n="step3_feature4_title">Download & Share</span>
+            </li>
+          </ul>
+          <a href="https://play.google.com/store/apps/details?id=com.elusifataehyung.MilkManagementApp&pcampaignid=web_share"
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-tertiary text-on-tertiary px-6 py-3 rounded-lg font-semibold hover:bg-tertiary-hover transition-all hover:scale-105 shadow-lg hover:shadow-xl">
+            <span data-i18n="try_this_feature">Try This Feature</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="relative fade-in-right mt-8 lg:mt-0">
+          <div class="image-container bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 feature-card-hover">
+            <img src="assets/reports-bills.png" alt="Reports Interface" class="w-full rounded-lg">
+          </div>
+          <!-- Floating Info Card -->
+          <div
+            class="hidden sm:block absolute -bottom-4 -right-4 bg-white rounded-xl shadow-xl p-4 max-w-[200px] float-animation">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary">download</span>
+              <span class="text-sm font-semibold" data-i18n="view_shared_reports_info">View Shared Reports</span>
+            </div>
+          </div>
+          <!-- Mobile Info Card -->
+          <div class="sm:hidden mt-4 bg-white rounded-xl shadow-lg p-4 float-animation">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary">download</span>
+              <span class="text-sm font-semibold" data-i18n="view_shared_reports_info">View Shared Reports</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Understanding the Buyer Role -->
+  <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-surface relative overflow-hidden">
+    <div class="absolute inset-0 animated-gradient opacity-50"
+      style="background: linear-gradient(135deg, #00288e10 0%, #00714d10 50%, #ff6b0010 100%);"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="text-center mb-12 fade-in-up">
+        <span
+          class="inline-flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <span class="material-symbols-outlined">help</span> <span data-i18n="understanding_roles_badge">Understanding
+            Roles</span>
+        </span>
+        <h2 class="font-headline text-3xl sm:text-4xl font-bold text-on-surface mb-4" data-i18n="buyer_role_title">What
+          Does the Buyer (Collection Center) Do?</h2>
+        <p class="text-lg text-on-surface-variant max-w-3xl mx-auto" data-i18n="buyer_role_subtitle">
+          It's important to understand that Suppliers (Farmers) and Buyers (Collection Centers) have different roles in
+          Dudhiya. Here's what the Buyer does:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+        <div class="order-2 lg:order-1 relative fade-in-left mt-8 lg:mt-0">
+          <div class="image-container bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 feature-card-hover">
+            <img src="assets/buyer-dashboard.png" alt="Buyer Dashboard" class="w-full rounded-lg"
+              onerror="this.src='assets/farmer-managent.png'">
+          </div>
+          <!-- Floating Cards - Desktop -->
+          <div
+            class="hidden sm:flex absolute -top-4 -left-4 bg-primary text-white rounded-xl shadow-xl p-4 float-animation">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined">admin_panel_settings</span>
+              <span class="text-sm font-semibold">Admin Role</span>
+            </div>
+          </div>
+          <div
+            class="hidden sm:flex absolute -bottom-4 -right-4 bg-secondary text-white rounded-xl shadow-xl p-4 float-animation"
+            style="animation-delay: 1.5s;">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined">edit_note</span>
+              <span class="text-sm font-semibold">Records Data</span>
+            </div>
+          </div>
+          <!-- Mobile Cards -->
+          <div class="sm:hidden mt-4 grid grid-cols-2 gap-3">
+            <div class="bg-primary text-white rounded-xl shadow-lg p-3 text-center">
+              <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+              <span class="text-xs font-semibold block mt-1">Admin Role</span>
+            </div>
+            <div class="bg-secondary text-white rounded-xl shadow-lg p-3 text-center">
+              <span class="material-symbols-outlined text-lg">edit_note</span>
+              <span class="text-xs font-semibold block mt-1">Records Data</span>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 fade-in-right">
+          <h3 class="font-headline text-2xl font-bold text-on-surface mb-6" data-i18n="buyer_responsibilities_title">
+            Buyer Responsibilities</h3>
+          <div class="space-y-6">
+            <div class="flex gap-4 feature-card-hover p-4 rounded-xl bg-white/50">
+              <div
+                class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0 font-bold">
+                1</div>
+              <div>
+                <h4 class="font-bold text-lg mb-1" data-i18n="buyer_resp1_title">Add & Manage Suppliers</h4>
+                <p class="text-on-surface-variant" data-i18n="buyer_resp1_desc">The Buyer (Collection Center) adds
+                  farmers to their system and
+                  manages supplier profiles with complete details.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 feature-card-hover p-4 rounded-xl bg-white/50">
+              <div
+                class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center flex-shrink-0 font-bold">
+                2</div>
+              <div>
+                <h4 class="font-bold text-lg mb-1" data-i18n="buyer_resp2_title">Record All Collections</h4>
+                <p class="text-on-surface-variant" data-i18n="buyer_resp2_desc">Only Buyers can add/edit milk
+                  collections. When you deliver milk,
+                  they record quantity, FAT, SNF, and calculate payments.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 feature-card-hover p-4 rounded-xl bg-white/50">
+              <div
+                class="w-12 h-12 rounded-full bg-tertiary text-white flex items-center justify-center flex-shrink-0 font-bold">
+                3</div>
+              <div>
+                <h4 class="font-bold text-lg mb-1" data-i18n="buyer_resp3_title">Generate & Share Reports</h4>
+                <p class="text-on-surface-variant" data-i18n="buyer_resp3_desc">Buyers create PDF/Excel reports and
+                  bills, then share them with you
+                  via WhatsApp or email. You can only VIEW these reports.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 p-4 bg-primary/5 rounded-xl border-l-4 border-primary">
+            <p class="text-on-surface font-medium">
+              <span class="material-symbols-outlined text-primary align-middle mr-2">info</span>
+              <span data-i18n="supplier_remember_note"><strong>Remember:</strong> As a Supplier, you can only VIEW data.
+                The Buyer manages all the data entry and report generation.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role Comparison Table -->
+      <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 fade-in-up">
+        <h3 class="font-headline text-xl sm:text-2xl font-bold text-on-surface mb-6 text-center"
+          data-i18n="comparison_title">Supplier vs Buyer - Quick Comparison</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[600px]">
+            <thead>
+              <tr class="border-b-2 border-outline">
+                <th class="text-left py-3 px-4 font-bold text-on-surface" data-i18n="comparison_feature_header">Feature
+                </th>
+                <th class="text-center py-3 px-4 font-bold text-secondary" data-i18n="comparison_supplier_header">
+                  Supplier (Farmer)</th>
+                <th class="text-center py-3 px-4 font-bold text-primary" data-i18n="comparison_buyer_header">Buyer
+                  (Collection Center)</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              <tr class="border-b border-outline-variant">
+                <td class="py-3 px-4 font-medium" data-i18n="comparison_feature1">Add Suppliers/Farmers</td>
+                <td class="text-center py-3 px-4"><span class="material-symbols-outlined text-error">close</span></td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-3 px-4 font-medium" data-i18n="comparison_feature2">Record Milk Collections</td>
+                <td class="text-center py-3 px-4"><span class="material-symbols-outlined text-error">close</span></td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-3 px-4 font-medium" data-i18n="comparison_feature3">View Collections</td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-3 px-4 font-medium" data-i18n="comparison_feature4">Generate Reports</td>
+                <td class="text-center py-3 px-4"><span class="material-symbols-outlined text-error">close</span></td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-3 px-4 font-medium" data-i18n="comparison_feature5">View Shared Reports</td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-medium" data-i18n="comparison_feature6">Track Earnings</td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+                <td class="text-center py-3 px-4"><span
+                    class="material-symbols-outlined text-secondary">check_circle</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Features for Suppliers -->
+  <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-surface relative overflow-hidden">
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/3 rounded-full blur-3xl">
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="text-center mb-12 fade-in-up">
+        <span
+          class="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <span class="material-symbols-outlined">stars</span> <span data-i18n="extra_tools_badge">Extra Tools</span>
+        </span>
+        <h2 class="font-headline text-3xl sm:text-4xl font-bold mb-4" data-i18n="more_features_title">More Features for
+          Suppliers</h2>
+        <p class="text-lg text-on-surface-variant max-w-2xl mx-auto" data-i18n="more_features_subtitle">Additional tools
+          to help farmers manage their dairy business</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          class="bg-white rounded-2xl p-6 border border-outline-variant shadow-lg feature-card-hover scale-in delay-100">
+          <div
+            class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 text-primary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+          </div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="wallet_balance_title">Wallet Balance</h3>
+          <p class="text-on-surface-variant" data-i18n="wallet_balance_desc">Track your earnings and payment history
+            from all connected dairies in one
+            place.
+          </p>
+        </div>
+        <div
+          class="bg-white rounded-2xl p-6 border border-outline-variant shadow-lg feature-card-hover scale-in delay-200">
+          <div
+            class="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 text-secondary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-3xl">notifications</span>
+          </div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="payment_notifications_title">Payment Notifications</h3>
+          <p class="text-on-surface-variant" data-i18n="payment_notifications_desc">Get instant notifications when
+            payments are received from collection
+            centers.
+          </p>
+        </div>
+        <div
+          class="bg-white rounded-2xl p-6 border border-outline-variant shadow-lg feature-card-hover scale-in delay-300">
+          <div
+            class="w-14 h-14 rounded-2xl bg-gradient-to-br from-tertiary/20 to-tertiary/5 text-tertiary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-3xl">language</span>
+          </div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="multi_language_title">Multi-Language</h3>
+          <p class="text-on-surface-variant" data-i18n="multi_language_desc">Use the app in English, Hindi, Punjabi, or
+            Kannada as per your preference.
+          </p>
+        </div>
+        <div
+          class="bg-white rounded-2xl p-6 border border-outline-variant shadow-lg feature-card-hover scale-in delay-100">
+          <div
+            class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 text-primary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-3xl">cloud_download</span>
+          </div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="download_reports_title">Download Reports</h3>
+          <p class="text-on-surface-variant" data-i18n="download_reports_desc">Download reports shared by buyers to keep
+            offline records on your device.
+          </p>
+        </div>
+        <div
+          class="bg-white rounded-2xl p-6 border border-outline-variant shadow-lg feature-card-hover scale-in delay-200">
+          <div
+            class="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 text-secondary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-3xl">share</span>
+          </div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="easy_sharing_title">Easy Sharing</h3>
+          <p class="text-on-surface-variant" data-i18n="easy_sharing_desc">Share your collection reports with family or
+            accountants via
+            WhatsApp/Email.</p>
+        </div>
+        <div
+          class="bg-white rounded-2xl p-6 border border-outline-variant shadow-lg feature-card-hover scale-in delay-300">
+          <div
+            class="w-14 h-14 rounded-2xl bg-gradient-to-br from-tertiary/20 to-tertiary/5 text-tertiary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-3xl">support_agent</span>
+          </div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="support_24_7_title">24/7 Support</h3>
+          <p class="text-on-surface-variant" data-i18n="support_24_7_desc">Get help anytime through in-app chat or call
+            support for any issues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download"
+    class="py-20 sm:py-28 md:py-32 px-4 sm:px-6 lg:px-8 bg-surface-container-low relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl float-animation"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl float-animation"
+      style="animation-delay: 2s;"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10 fade-in-up">
+      <div
+        class="inline-flex items-center gap-2 free-badge text-white px-5 py-2 rounded-full text-base font-bold mb-8 shadow-lg">
+        <span class="material-symbols-outlined">card_giftcard</span>
+        <span data-i18n="first_month_free_no_card">First Month FREE - No Credit Card Required!</span>
+      </div>
+      <div
+        class="w-20 h-20 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mx-auto mb-8 pulse-glow">
+        <span class="material-symbols-outlined text-4xl">agriculture</span>
+      </div>
+      <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-6" data-i18n="ready_track_title">Ready to
+        Track Your Milk Deliveries?</h2>
+      <p class="text-lg sm:text-xl text-on-surface-variant mb-10 max-w-2xl mx-auto" data-i18n="ready_track_subtitle">
+        Join thousands of farmers across India using Dudhiya to stay connected with their dairies and track earnings.
+        Start your digital journey today!
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://play.google.com/store/apps/details?id=com.elusifataehyung.MilkManagementApp&pcampaignid=web_share"
+          target="_blank"
+          class="secondary-gradient text-on-secondary px-6 sm:px-8 py-4 rounded-full font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-2 pulse-glow whitespace-nowrap">
+          <img src="/playstore.png" alt="Download App" class="w-5 h-5 sm:w-6 sm:h-6">
+          <span class="whitespace-nowrap" data-i18n="download_mobile_app">Download Mobile App</span>
+        </a>
+        <a href="/login"
+          class="bg-white text-secondary px-6 sm:px-8 py-4 rounded-full font-bold text-base sm:text-lg border-2 border-secondary hover:bg-surface-container shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+          <img src="assets/web-app-icon.png" alt="Use Web App" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
+          <span class="whitespace-nowrap" data-i18n="use_web_app">Use Web App</span>
+        </a>
+      </div>
+      <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-on-surface-variant">
+        <span class="flex items-center gap-2 font-semibold text-secondary bg-secondary/5 px-4 py-2 rounded-full">
+          <span class="material-symbols-outlined text-tertiary">card_giftcard</span> <span
+            data-i18n="first_month_completely_free">First Month Completely FREE</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">verified</span> <span
+            data-i18n="no_credit_card_required">No Credit Card Required</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">verified</span> <span data-i18n="support_24_7">24/7
+            Support</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', function () {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animation elements
+      const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+      animatedElements.forEach(el => observer.observe(el));
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Add parallax effect to floating elements
+      window.addEventListener('scroll', () => {
+        // Skip parallax on mobile for better performance
+        if (window.innerWidth > 768) {
+          const scrolled = window.pageYOffset;
+          const floatElements = document.querySelectorAll('.float-animation');
+          floatElements.forEach((el, index) => {
+            const speed = 0.5 + (index * 0.1);
+            el.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+          });
+        }
+      });
+
+      // Mobile Menu Functionality
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const closeMenuBtn = document.getElementById('close-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileOverlay = document.getElementById('mobile-overlay');
+
+      function openMenu() {
+        mobileMenu.classList.add('open');
+        mobileOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove('open');
+        mobileOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', openMenu);
+      }
+
+      if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeMenu);
+      }
+
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMenu);
+      }
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+
+      // Close menu when clicking on links
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    });
+  </script>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+    class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-12 h-12 sm:w-14 sm:h-14 bg-primary text-white rounded-full shadow-lg shadow-primary/30 flex items-center justify-center hover:bg-primary/90 hover:scale-110 hover:shadow-xl transition-all z-50 opacity-0 pointer-events-none"
+    aria-label="Scroll to top">
+    <span class="material-symbols-outlined text-xl sm:text-2xl">arrow_upward</span>
+  </button>
+
+  <script src="script.js"></script>
+  <script src="supplier-workflow-translations.js"></script>
+  <script>
+    // Load navbar component
+    async function loadNavbar() {
+      try {
+        const response = await fetch('components/navbar.html');
+        const navbarHTML = await response.text();
+        document.getElementById('navbar-container').innerHTML = navbarHTML;
+
+        // Initialize language dropdown after navbar loads
+        initLanguageDropdown();
+
+        // Apply saved language to navbar elements
+        const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+
+        // Apply supplier workflow translations (includes navbar)
+        if (typeof updateSupplierWorkflowLanguage === 'function') {
+          updateSupplierWorkflowLanguage(savedLang);
+        } else if (window.supplierWorkflowTranslations) {
+          window.supplierWorkflowTranslations.applyTranslations();
+        }
+      } catch (error) {
+        console.error('Error loading navbar:', error);
+      }
+    }
+
+    // Initialize language dropdown functionality
+    function initLanguageDropdown() {
+      const langToggleDesktop = document.getElementById('langToggleDesktop');
+      const langDropdownDesktop = document.getElementById('langDropdownDesktop');
+      const langOptions = document.querySelectorAll('[data-lang]');
+      const currentLangDisplayDesktop = document.getElementById('currentLangDesktop');
+
+      // Toggle desktop language dropdown
+      if (langToggleDesktop && langDropdownDesktop) {
+        langToggleDesktop.addEventListener('click', function (e) {
+          e.stopPropagation();
+          langDropdownDesktop.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('.desktop-language-selector')) {
+            langDropdownDesktop.classList.remove('show');
+          }
+        });
+      }
+
+      // Handle language selection
+      langOptions.forEach(option => {
+        option.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = this.getAttribute('data-lang');
+
+          // Update active class
+          langOptions.forEach(opt => opt.classList.remove('active'));
+          document.querySelectorAll(`[data-lang="${lang}"]`).forEach(opt => opt.classList.add('active'));
+
+          // Update display text
+          const langText = {
+            'en': 'English',
+            'hi': 'हिन्दी',
+            'pa': 'ਪੰਜਾਬੀ',
+            'kn': 'ಕನ್ನಡ'
+          };
+          if (currentLangDisplayDesktop) {
+            currentLangDisplayDesktop.textContent = langText[lang];
+          }
+
+          // Close dropdown
+          if (langDropdownDesktop) {
+            langDropdownDesktop.classList.remove('show');
+          }
+
+          // Save preference
+          localStorage.setItem('preferredLanguage', lang);
+
+          // Update supplier workflow translations (includes navbar)
+          if (typeof updateSupplierWorkflowLanguage === 'function') {
+            updateSupplierWorkflowLanguage(lang);
+          } else if (window.supplierWorkflowTranslations) {
+            window.supplierWorkflowTranslations.setLanguage(lang);
+          }
+
+          // Dispatch custom event for language change
+          window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+        });
+      });
+
+      // Load saved language preference
+      const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+      if (currentLangDisplayDesktop) {
+        const langText = {
+          'en': 'English',
+          'hi': 'हिन्दी',
+          'pa': 'ਪੰਜਾਬੀ',
+          'kn': 'ಕನ್ನಡ'
+        };
+        currentLangDisplayDesktop.textContent = langText[savedLang];
+      }
+
+      // Update active states
+      langOptions.forEach(opt => {
+        if (opt.getAttribute('data-lang') === savedLang) {
+          opt.classList.add('active');
+        } else {
+          opt.classList.remove('active');
+        }
+      });
+
+      // Initialize Mobile Menu Toggle
+      initMobileMenu();
+    }
+
+    // Initialize mobile menu toggle functionality
+    function initMobileMenu() {
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function () {
+          const isOpen = !mobileMenu.classList.contains('translate-x-full');
+
+          if (isOpen) {
+            // Close menu
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuToggle.classList.remove('active');
+            // Reset hamburger icon
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'rotate(0) translateY(0)';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'rotate(0) translateY(0)';
+          } else {
+            // Open menu
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenuToggle.classList.add('active');
+            // Transform to X
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'rotate(45deg) translateY(6px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translateY(-6px)';
+          }
+        });
+      }
+
+      // Close mobile menu when clicking on a nav link
+      mobileNavLinks.forEach(navLink => {
+        navLink.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+          mobileMenuToggle.classList.remove('active');
+          const spans = mobileMenuToggle.querySelectorAll('span');
+          spans[0].style.transform = 'rotate(0) translateY(0)';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'rotate(0) translateY(0)';
+        });
+      });
+    }
+
+    // Load navbar when DOM is ready
+    document.addEventListener('DOMContentLoaded', loadNavbar);
+
+    // Ensure translations are applied after page load (fallback)
+    document.addEventListener('DOMContentLoaded', function () {
+      const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+      setTimeout(function () {
+        if (typeof updateSupplierWorkflowLanguage === 'function') {
+          updateSupplierWorkflowLanguage(savedLang);
+        }
+      }, 100);
+    });
+  </script>
+  <script>
+    // Show/hide scroll to top button
+    const scrollBtn = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+        scrollBtn.classList.add('opacity-100');
+      } else {
+        scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+        scrollBtn.classList.remove('opacity-100');
+      }
+    });
+  </script>
+</body>
+
+</html>
