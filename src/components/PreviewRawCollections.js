@@ -46,7 +46,7 @@ const styles = {
 };
 
 const PreviewRawCollections = () => {
-  const { t } = useLanguage();
+  useLanguage();
   const [collections, setCollections] = useState([]);
   const [filteredCollections, setFilteredCollections] = useState([]);
   const [loading, setLoading] = useState(true);

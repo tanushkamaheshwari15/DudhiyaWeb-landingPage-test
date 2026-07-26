@@ -7,7 +7,6 @@ import {
   generateFullCustomerReport,
   getDairyInfo,
   getSuppliers,
-  generateSupplierBillsReport,
   generateCustomerReport,
   updateSupplier
 } from '../services/api';
@@ -313,39 +312,7 @@ const StandardReportGenerator = ({ variant = 'dashboard' }) => {
     }
   };
 
-  const downloadProRataSupplierReport = async () => {
-    if (!fromDate || !toDate) {
-      setError('Please select date range for pro-rata report');
-      return;
-    }
 
-    setLoading(true);
-    setError(null);
-    try {
-      const s = formatDateForAPI(fromDate);
-      const e = formatDateForAPI(toDate);
-      // Use pro-rata report endpoint for supplier
-      const response = await generateSupplierBillsReport(selectedSupplier.id, s, e, true);
-
-      const blob = new Blob([response.data], { type: 'application/pdf' });
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      const fromName = formatDateForFilename(fromDate);
-      const toName = formatDateForFilename(toDate);
-      const year = new Date(toDate).getFullYear();
-      link.setAttribute('download', `${dairyName}-pro_rata_supplier_bills_${selectedSupplier.name}-${fromName}-${toName}-${year}.pdf`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-      closeSupplierDetailsModal();
-    } catch (err) {
-      setError(err.error || err.message || t('failedToGenerateProRataSupplierReport'));
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="pro-rata-report-generator">
