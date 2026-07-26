@@ -11,7 +11,6 @@ import {
   faHeadphones,
   faPhone,
   faGift,
-  faCheck,
   faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
 import { useLanguage } from '../contexts/LanguageContext';

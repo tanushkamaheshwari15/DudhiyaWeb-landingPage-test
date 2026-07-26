@@ -7,7 +7,6 @@ import {
   generateProRataCustomerBills,
   getDairyInfo,
   getSuppliers,
-  getSupplierBills,
   generateSupplierBillsReport,
   updateSupplier
 } from '../services/api';

@@ -7,9 +7,7 @@ import {
   generateFullCustomerReport,
   getDairyInfo,
   getSuppliers,
-  getSupplierBills,
   generateSupplierBillsReport,
-  generateStandardSupplierBillsReport,
   generateCustomerReport,
   updateSupplier
 } from '../services/api';

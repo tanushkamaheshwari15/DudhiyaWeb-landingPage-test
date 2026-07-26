@@ -1365,14 +1365,9 @@ export const updateSupplier = async (supplierId, supplierData) => {
 
 // Get supplier bills (using customer collections as fallback for now)
 export const getSupplierBills = async (supplierId, startDate, endDate) => {
-  try {
-    // For now, return empty data since supplier bills endpoint doesn't exist
-    // This will be implemented when backend adds supplier functionality
-    return [];
-  } catch (error) {
-    console.error('Error fetching supplier bills:', error);
-    throw error;
-  }
+  // For now, return empty data since supplier bills endpoint doesn't exist
+  // This will be implemented when backend adds supplier functionality
+  return [];
 };
 
 // Generate supplier bills report (individual supplier)

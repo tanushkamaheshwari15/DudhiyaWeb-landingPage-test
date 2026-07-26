@@ -5,7 +5,6 @@ import { removeToken } from '../services/tokenStorage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faArrowLeft, faSearch, faTimes, faUserAlt, faCalendarAlt, faEdit, faCheck, faSortAmountDown, faSortAmountUp, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useLanguage } from '../contexts/LanguageContext';
-import LanguageSwitcher from './LanguageSwitcher';
 import './PreviewRawCollections.css';
 import { toast } from 'react-toastify';
 

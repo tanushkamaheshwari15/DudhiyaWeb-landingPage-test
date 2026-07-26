@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { getUserInfo, getDairyInfo, getWalletBalance, getCurrentMarketPrice, updateMarketPrice, getFilteredCollections, updateAddedMilkRateCollection, addMoneyToWallet, patchDairyInfo, getProRataRateChart, createProRataRateChart, updateProRataRateChart, getCustomers } from '../services/api';
+import { getUserInfo, getDairyInfo, getWalletBalance, getCurrentMarketPrice, updateMarketPrice, getFilteredCollections, updateAddedMilkRateCollection, patchDairyInfo, getProRataRateChart, createProRataRateChart, updateProRataRateChart, getCustomers } from '../services/api';
 import { removeToken } from '../services/tokenStorage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -23,22 +23,11 @@ import {
   faBars,
   faUserCircle,
   faChevronDown,
-  faTag,
   faArrowRight,
-  faInfoCircle,
-  faGift,
-  faStar,
   faHome,
-  faMoneyBillWave,
-  faChartLine,
-  faPlusCircle,
   faTrash,
   faSearch,
   faUserAlt,
-  faFilter,
-  faCalendarAlt,
-  faSync,
-  faClock,
   faChartBar
 } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
@@ -48,7 +37,6 @@ import ProRataReportGenerator from './ProRataReportGenerator';
 import LanguageSwitcher from './LanguageSwitcher';
 import ConfirmationModal from './ConfirmationModal';
 import { useLanguage } from '../contexts/LanguageContext';
-import classNames from "classnames";
 import AddMoneyModal from './AddMoneyModal';
 
 // Styles for the date filter type toggle

@@ -16,24 +16,15 @@ import {
   faWallet,
   faExclamationCircle,
   faCog,
-  faInfoCircle,
   faTag,
   faArrowRight,
   faChartBar,
   faStore,
   faUser,
   faPhone,
-  faHeadphones,
-  faUserCircle,
-  faGift,
-  faStar,
-  faMoneyBillWave,
-  faPlusCircle,
-  faSearch,
-  faSync
+  faMoneyBillWave
 } from '@fortawesome/free-solid-svg-icons';
 import { useLanguage } from '../contexts/LanguageContext';
-import classNames from 'classnames';
 import './BulkCollectionV1.css';
 import ConfirmationModal from './ConfirmationModal';
 import Navbar from './Navbar';
